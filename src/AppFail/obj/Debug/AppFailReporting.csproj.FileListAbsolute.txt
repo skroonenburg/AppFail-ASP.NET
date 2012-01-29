@@ -1,0 +1,11 @@
+D:\dev\git\AppFail\AppFailReporting\bin\Debug\AppFailReporting.dll
+D:\dev\git\AppFail\AppFailReporting\bin\Debug\AppFailReporting.pdb
+D:\dev\git\AppFail\AppFailReporting\bin\Debug\Elmah.dll
+D:\dev\git\AppFail\AppFailReporting\obj\Debug\ResolveAssemblyReference.cache
+D:\dev\git\AppFail\AppFailReporting\obj\Debug\AppFailReporting.dll
+D:\dev\git\AppFail\AppFailReporting\obj\Debug\AppFailReporting.pdb
+D:\dev\git\AppFailPortal\AppFailReporting\obj\Debug\ResolveAssemblyReference.cache
+D:\dev\git\AppFailPortal\AppFailReporting\obj\Debug\AppFailReporting.dll
+D:\dev\git\AppFailPortal\AppFailReporting\bin\Debug\AppFailReporting.dll
+D:\dev\git\AppFailPortal\AppFailReporting\bin\Debug\AppFailReporting.pdb
+D:\dev\git\AppFailPortal\AppFailReporting\obj\Debug\AppFailReporting.pdb

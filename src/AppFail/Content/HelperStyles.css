@@ -1,0 +1,10 @@
+﻿#appFailReport {
+    position: absolute;
+    z-index:2147483644;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 200px;
+    background-color: thistle;
+    color: black;
+}

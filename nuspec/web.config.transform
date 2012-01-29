@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <system.web>
+    <httpModules>
+      <add name="AppFail" type="AppFail.AppFailModule, Rejuicer" />
+    </httpModules>
+  </system.web>
+  <system.webServer>
+    <modules runAllManagedModulesForAllRequests="true">
+      <add name="AppFail" type="AppFail.AppFailModule, AppFail"/>
+    </modules>
+  </system.webServer>
+</configuration>

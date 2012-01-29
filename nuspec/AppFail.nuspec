@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>AppFail</id>
+    <version>0.1</version>
+    <authors>Sam Kroonenburg</authors>
+    <description>Reports ASP.NET unhandled exception to appfail.net.</description>
+    <language>en-US</language>
+    <projectUrl>http://appfail.net</projectUrl>
+    <iconUrl></iconUrl>
+    <tags></tags>
+  </metadata>
+  <files>
+    <file src="..\src\AppFail\bin\Release\AppFail.dll" target="lib\35\AppFail.dll" />
+    <file src="web.config.transform" target="Content\web.config.transform" />
+  </files>
+</package>
