@@ -1,7 +1,7 @@
 echo OFF
 
 :: directories
-set DestinationDirectory=destination
+set DestinationDirectory=..\build\
 set SourceDirectory=source
 
 :: set commands
@@ -37,9 +37,12 @@ set WebConfigTransformFile=web.config.transform
 :: set the nuget file location
 set NugetLocation=..\tools\nuget\
 set NugetFileCommand=NuGet.exe pack
+
+IF NOT EXIST %DestinationDirectory% %MakeDirectoryCommand% %DestinationDirectory%
  
+
 :: build the package
-%NugetLocation%%NugetFileCommand% %ManifestLocation%%ManifestFile% -BasePath %SourceDirectory% -Verbose
+%NugetLocation%%NugetFileCommand% %ManifestLocation%%ManifestFile% -BasePath %SourceDirectory% -Verbose -OutputDirectory %DestinationDirectory%  
 
 :: delete source directory
 %DeleteDirectoryCommand% %SourceDirectory%
