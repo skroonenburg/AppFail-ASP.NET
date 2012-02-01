@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using AppFail.Model;
 
@@ -11,11 +12,11 @@ namespace AppFail.Reporting
     /// </summary>
     internal static class FailQueue
     {
-        private static Queue<FailReport> _failQueue = new Queue<FailReport>();
+        private static Queue<FailOccurrence> _failQueue = new Queue<FailOccurrence>();
         private static ReaderWriterLockSlim _queueLock = new ReaderWriterLockSlim();
         private static ManualResetEvent _queueSignal = new ManualResetEvent(false);
-        
-        public static void Enqueue(FailReport failReport)
+
+        public static void Enqueue(FailOccurrence failReport)
         {
             // When recording a new fail report, make sure that the reporting worker is running
             ReportingWorker.Instance.Start();
@@ -25,8 +26,11 @@ namespace AppFail.Reporting
                 _queueLock.EnterWriteLock();
                 _failQueue.Enqueue(failReport);
                 
-                // Signal that there is something in the queue
-                _queueSignal.Set();
+                // Signal that the queue is at least at the minimum batch size
+                if (_failQueue.Count >= ConfigurationModel.Instance.ReportingMinimumBatchSize)
+                {
+                    _queueSignal.Set();
+                }
             }
             finally
             {
@@ -42,20 +46,32 @@ namespace AppFail.Reporting
             get { return _queueSignal; }
         }
 
-        public static FailReport Dequeue()
+        public static FailOccurrence Dequeue()
+        {
+            return Dequeue(1).FirstOrDefault();
+        }
+
+        public static IEnumerable<FailOccurrence> Dequeue(int count)
         {
             try
             {
                 _queueLock.EnterWriteLock();
-                var report = _failQueue.Dequeue();
 
-                // if the queue holds no items, reset the queue signal
-                if (_failQueue.Count == 0)
+                var returnCount = Math.Min(count, _failQueue.Count);
+                var fails = new FailOccurrence[returnCount];
+
+                for (var i = 0; i < returnCount; i++)
+                {
+                    fails[i] = _failQueue.Dequeue();
+                }
+
+                // if the queue holds less than the batch size, reset the queue signal
+                if (_failQueue.Count < ConfigurationModel.Instance.ReportingMinimumBatchSize)
                 {
                     _queueSignal.Reset();
                 }
 
-                return report;
+                return fails;
             }
             finally
             {
@@ -63,7 +79,7 @@ namespace AppFail.Reporting
             }
         }
 
-        public static FailReport Peek()
+        public static FailOccurrence Peek()
         {
             try
             {

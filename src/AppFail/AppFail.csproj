@@ -33,16 +33,23 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppFail.cs" />
+    <Compile Include="AppFailConfiguration.cs" />
+    <Compile Include="AppFailConfigurationBuilder.cs" />
+    <Compile Include="ConfigurationModel.cs" />
     <Compile Include="Html\AppFail.cs" />
     <Compile Include="AppFailModule.cs" />
+    <Compile Include="IAppFailConfigurationBuilder.cs" />
+    <Compile Include="Model\FailSubmission.cs" />
     <Compile Include="Reporting\FailQueue.cs" />
-    <Compile Include="Model\FailReport.cs" />
-    <Compile Include="Model\FailReportFactory.cs" />
+    <Compile Include="Model\FailOccurrence.cs" />
+    <Compile Include="Model\FailOccurrenceFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reporting\BackgroundWorker.cs" />
     <Compile Include="Reporting\ReportingWorker.cs" />

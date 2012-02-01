@@ -4,18 +4,16 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Web;
+using AppFail.Helpers;
 
 namespace AppFail
 {
     public class AppFailModule : IHttpModule
     {
-        internal const string GetScriptUrl = "/__AppFail/Include/Script";
-        internal const string GetStylesUrl = "/__AppFail/Include/Styles";
-
         private IDictionary<string, Action<string, HttpContext>> _urlHandlers = new Dictionary<string, Action<string, HttpContext>>
                                                                                     {
-                                                                                        { GetScriptUrl, HandleScriptRequest },
-                                                                                        { GetStylesUrl, HandleStylesRequest }
+                                                                                        { UrlLookup.GetScriptUrl, HandleScriptRequest },
+                                                                                        { UrlLookup.GetStylesUrl, HandleStylesRequest }
                                                                                     }; 
         public void Init(HttpApplication application)
         {
@@ -54,7 +52,7 @@ namespace AppFail
         private static void HandleScriptRequest(string url, HttpContext httpContext)
         {
             // TODO: Cache this in memory
-            using (var sr = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("AppFailReporting.HelperScript.js")))
+            using (var sr = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("AppFail.Content.HelperScript.js")))
             {
                 httpContext.Response.Write(sr.ReadToEnd());
                 httpContext.Response.Flush();
@@ -64,9 +62,9 @@ namespace AppFail
         private static void HandleStylesRequest(string url, HttpContext httpContext)
         {
             // TODO: Cache this in memory
-            using (var sr = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("AppFailReporting.HelperStyles.css")))
+            using (var sr = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("AppFail.Content.HelperStyles.css")))
             {
-                 httpContext.Response.Write(sr.ReadToEnd());
+                httpContext.Response.Write(sr.ReadToEnd());
                 httpContext.Response.ContentType = "text/css";
                 httpContext.Response.Flush();
             }

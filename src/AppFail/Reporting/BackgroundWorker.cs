@@ -56,7 +56,7 @@ namespace AppFail.Reporting
                 // Do the work here
                 waitHandle = DoWork();
             }
-            while (WaitHandle.WaitAny(new WaitHandle[] { _shuttingDownSignal, waitHandle }, TimeSpan.FromSeconds(30)) != 0);
+            while (WaitHandle.WaitAny(new WaitHandle[] { _shuttingDownSignal, waitHandle }, ConfigurationModel.Instance.ReportingMaximumInterval) != 0);
 
             _shutDownSignal.Set();
         }

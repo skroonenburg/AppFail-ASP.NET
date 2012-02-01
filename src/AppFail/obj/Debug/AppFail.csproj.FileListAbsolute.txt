@@ -1,5 +1,0 @@
-D:\dev\git\AppFailASP.NET\src\AppFail\AppFail\bin\Debug\AppFail.dll
-D:\dev\git\AppFailASP.NET\src\AppFail\AppFail\bin\Debug\AppFail.pdb
-D:\dev\git\AppFailASP.NET\src\AppFail\AppFail\obj\Debug\ResolveAssemblyReference.cache
-D:\dev\git\AppFailASP.NET\src\AppFail\AppFail\obj\Debug\AppFail.dll
-D:\dev\git\AppFailASP.NET\src\AppFail\AppFail\obj\Debug\AppFail.pdb

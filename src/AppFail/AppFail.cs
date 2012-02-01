@@ -13,8 +13,13 @@ namespace AppFail
         /// <param name="e"></param>
         internal static void SendToAppFail(this Exception e)
         {
-            var failReport = FailReportFactory.FromException(HttpContext.Current.Request, e);
+            var failReport = FailOccurrenceFactory.FromException(HttpContext.Current, e);
             FailQueue.Enqueue(failReport);
+        }
+
+        public static IAppFailConfigurationBuilder Configure
+        {
+            get { return new AppFailConfigurationBuilder(); }
         }
     }
 }

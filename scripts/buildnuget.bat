@@ -19,7 +19,7 @@ set SourceFile=AppFail.dll
 IF NOT EXIST %SourceLocation%%SourceFile% (
 	echo Source files were not found. Did you compile in release?
 	pause
-	exit
+	GOTO :EOF
 ) 
 
 :: create the directory for future files

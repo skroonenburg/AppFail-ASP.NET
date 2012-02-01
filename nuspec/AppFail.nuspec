@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>AppFail</id>
-    <version>0.1</version>
+    <version>0.1.3</version>
     <authors>Sam Kroonenburg</authors>
     <description>Reports ASP.NET unhandled exception to appfail.net.</description>
     <language>en-US</language>

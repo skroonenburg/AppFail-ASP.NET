@@ -9,7 +9,7 @@ namespace AppFail.Html
         {
             get
             {
-                return HttpContext.Current.Request.Url.PathAndQuery.Substring(1);
+                return HttpContext.Current.Request.Url.AbsolutePath.Substring(1);
             }
         }
 
@@ -25,12 +25,12 @@ namespace AppFail.Html
 
         public static string RenderStyles()
         {
-            return string.Format(@"<link rel=""stylesheet"" type=""text/css"" href=""{0}""/>", AppFailModule.GetStylesUrl);
+            return string.Format(@"<link rel=""stylesheet"" type=""text/css"" href=""{0}""/>", UrlLookup.GetStylesUrl);
         }
 
         internal static string RenderHelperScriptIncludes()
         {
-            return string.Format(@"<script src=""{0}"" type=""text/javascript""></script>", AppFailModule.GetScriptUrl);
+            return string.Format(@"<script src=""{0}"" type=""text/javascript""></script>", UrlLookup.GetScriptUrl);
         }
     }
 }

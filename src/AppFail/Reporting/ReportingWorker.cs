@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Web;
+using System.Web.Script.Serialization;
 using AppFail.Helpers;
 using AppFail.Model;
 
@@ -17,6 +20,7 @@ namespace AppFail.Reporting
     {
         // Singleton instance
         private static ReportingWorker _instance = new ReportingWorker();
+        private static JavaScriptSerializer _javaScriptSerializer = new JavaScriptSerializer();
 
         private ReportingWorker()
         {}
@@ -31,14 +35,13 @@ namespace AppFail.Reporting
 
         public override WaitHandle DoWork()
         {
-            // Send fail reports one-by-one
-            // TODO: Send in batches
-            var nextFailReport = FailQueue.Peek();
-            
-            if (nextFailReport != null && PostFailToService(nextFailReport))
+            var failOccurrences = FailQueue.Dequeue(ConfigurationModel.Instance.ReportingMinimumBatchSize);
+
+            if (failOccurrences.Count() > 0)
             {
-                // Remove this entry from the queue.
-                FailQueue.Dequeue();
+                var failSubmission = new FailSubmission(ConfigurationModel.Instance.ApiToken, failOccurrences);
+
+                PostToService(failSubmission);
             }
 
             // Return the wait handle that will signal to
@@ -46,17 +49,18 @@ namespace AppFail.Reporting
             return FailQueue.WaitHandle;
         }
 
-        private static bool PostFailToService(FailReport report)
+        private static bool PostToService(FailSubmission failSubmission)
         {
+            if (failSubmission.FailOccurrences.Count() == 0)
+            {
+                return true;
+            }
+
             var postRequest = WebRequest.Create(UrlLookup.ReportFailUrl);
             postRequest.Method = "POST";
-            postRequest.ContentType = "application/x-www-form-urlencoded";
-            var postData = "";
-            foreach (var property in report.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public))
-            {
-                var value = property.GetValue(report, null);
-                postData += String.Format("{0}={1}&", HttpUtility.UrlEncode(property.Name), HttpUtility.UrlEncode(value != null ? value.ToString() : ""));
-            }
+            postRequest.ContentType = "application/json; charset=utf-8'";
+
+            var postData = _javaScriptSerializer.Serialize(failSubmission);
 
             ASCIIEncoding encoding = new ASCIIEncoding();
             byte[] data = encoding.GetBytes(postData);
