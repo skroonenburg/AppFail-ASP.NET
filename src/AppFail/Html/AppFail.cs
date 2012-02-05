@@ -1,4 +1,6 @@
-﻿using System.Web;
+﻿using System;
+using System.Text;
+using System.Web;
 using AppFail.Helpers;
 
 namespace AppFail.Html
@@ -13,6 +15,15 @@ namespace AppFail.Html
             }
         }
 
+        internal static string EncodedCurrentUrl
+        {
+            get
+            {
+                var url = HttpContext.Current.Request.Url.ToString();
+                return Convert.ToBase64String(Encoding.UTF8.GetBytes(url));
+            }
+        }
+
         public static string RenderIncludes()
         {
             return string.Format("{0}{1}", RenderHelperScriptIncludes(), RenderErrorDataIncludes());
@@ -20,7 +31,7 @@ namespace AppFail.Html
 
         internal static string RenderErrorDataIncludes()
         {
-            return string.Format(@"<script src=""{0}{1}"" type=""text/javascript""></script>", UrlLookup.GetFailsUrl, HttpUtility.UrlEncode(CurrentRelativePath.Replace("/", "-")));
+            return string.Format(@"<script src=""{0}{1}"" type=""text/javascript""></script>", UrlLookup.GetFailsUrl, HttpUtility.UrlEncode(EncodedCurrentUrl));
         }
 
         public static string RenderStyles()
