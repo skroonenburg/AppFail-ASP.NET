@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppFail", "AppFail\AppFail.csproj", "{61620DF6-A197-4C39-B173-EE3B3345ADE5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppFail.Mvc", "AppFail.Mvc\AppFail.Mvc.csproj", "{0A30DD38-301A-4BC6-8690-48CCA866845A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{61620DF6-A197-4C39-B173-EE3B3345ADE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61620DF6-A197-4C39-B173-EE3B3345ADE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61620DF6-A197-4C39-B173-EE3B3345ADE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A30DD38-301A-4BC6-8690-48CCA866845A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A30DD38-301A-4BC6-8690-48CCA866845A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A30DD38-301A-4BC6-8690-48CCA866845A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A30DD38-301A-4BC6-8690-48CCA866845A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

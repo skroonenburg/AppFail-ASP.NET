@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <section name="appFail" type="AppFail.AppFailConfiguration, AppFail"/>
+  </configSections>
+  <system.web>
+    <httpModules>
+      <add name="AppFail" type="AppFail.AppFailModule, AppFail" />
+    </httpModules>
+    <pages>
+      <namespaces>
+        <add namespace="AppFail"/>
+      </namespaces>
+    </pages>
+  </system.web>
+  <system.webServer>
+    <modules runAllManagedModulesForAllRequests="true">
+      <add name="AppFail" type="AppFail.AppFailModule, AppFail"/>
+    </modules>
+  </system.webServer>
+  <appFail apiToken="YOUR APPLICATION API TOKEN HERE" />
+</configuration>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>AppFail.Mvc</id>
+    <version>0.1.9</version>
+    <authors>Sam Kroonenburg</authors>
+    <description>Reports ASP.NET Mvcunhandled exceptions to appfail.net.</description>
+    <language>en-US</language>
+    <projectUrl>http://appfail.net</projectUrl>
+    <iconUrl>http://appfail.net/icon.png</iconUrl>
+    <tags></tags>
+    <dependencies>
+      <dependency id="AppFail.WebForms" version="0.1.6"/>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="AppFail.Mvc.dll" target="lib\35\AppFail.Mvc.dll" />
+    <file src="web.config.transform" target="Content\web.config.transform" />
+  </files>
+</package>
