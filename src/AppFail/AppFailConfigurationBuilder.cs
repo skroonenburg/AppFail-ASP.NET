@@ -45,5 +45,11 @@ namespace AppFail
             ConfigurationModel.Instance.BaseApiUrl = baseApiUrl;
             return this;
         }
+
+        public IAppFailConfigurationBuilder AppHarborCompatibilityMode(bool compatibilityMode = true)
+        {
+            ConfigurationModel.Instance.AppHarborCompatibilityMode = compatibilityMode;
+            return this;
+        }
     }
 }

@@ -10,6 +10,7 @@ namespace AppFail.Model
         {
             var request = httpContext.Request;
             var urlReferrer = request.UrlReferrer != null ? request.UrlReferrer.ToString() : null;
+
             var relativeUrl = request.Url != null ? request.Url.AbsolutePath : null;
             if (relativeUrl != null && relativeUrl.Length > 0)
             {

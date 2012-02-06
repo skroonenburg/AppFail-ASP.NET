@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 
@@ -56,6 +57,28 @@ namespace AppFail
             set { _reportCurrentUsername = value; }
         }
 
+        private bool? _appHarborCompatibilityMode;
+        public bool AppHarborCompatibilityMode
+        {
+            get { return _appHarborCompatibilityMode ?? AppSettingsAppHarborCompatibilityMode; }
+            set { _appHarborCompatibilityMode = value; }
+        }
+
+        private static bool AppSettingsAppHarborCompatibilityMode
+        {
+            get
+            {
+                var mode = ConfigurationManager.AppSettings["appHarborCompatibilityMode"];
+                var modeBool = false;
+
+                if (bool.TryParse(mode, out modeBool))
+                {
+                    return modeBool;
+                }
+
+                return false;
+            }
+        }
         private string EnforceTrailingSlash(string url)
         {
             return url.Trim().EndsWith("/") ? url : url.Trim() + "/";

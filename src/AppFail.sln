@@ -5,6 +5,20 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppFail", "AppFail\AppFail.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppFail.Mvc", "AppFail.Mvc\AppFail.Mvc.csproj", "{0A30DD38-301A-4BC6-8690-48CCA866845A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuspec", "Nuspec", "{29338F22-C0C2-4E62-A66E-20D3611B57C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mvc", "Mvc", "{02B4F09E-E4AA-4B2F-B93D-1691A3B49435}"
+	ProjectSection(SolutionItems) = preProject
+		..\nuspec\Mvc\AppFail.Mvc.nuspec = ..\nuspec\Mvc\AppFail.Mvc.nuspec
+		..\nuspec\Mvc\web.config.transform = ..\nuspec\Mvc\web.config.transform
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebForms", "WebForms", "{2FA235A5-17C3-4CFF-8F43-1DFBCEFEEBC3}"
+	ProjectSection(SolutionItems) = preProject
+		..\nuspec\WebForms\AppFail.nuspec = ..\nuspec\WebForms\AppFail.nuspec
+		..\nuspec\WebForms\web.config.transform = ..\nuspec\WebForms\web.config.transform
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,5 +36,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{02B4F09E-E4AA-4B2F-B93D-1691A3B49435} = {29338F22-C0C2-4E62-A66E-20D3611B57C7}
+		{2FA235A5-17C3-4CFF-8F43-1DFBCEFEEBC3} = {29338F22-C0C2-4E62-A66E-20D3611B57C7}
 	EndGlobalSection
 EndGlobal
