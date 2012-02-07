@@ -59,6 +59,7 @@ namespace AppFail.Reporting
             var postRequest = WebRequest.Create(UrlLookup.ReportFailUrl);
             postRequest.Method = "POST";
             postRequest.ContentType = "application/json; charset=utf-8'";
+            postRequest.Headers.Add("x-appfail-version", UrlLookup.ReportApiVersion);
 
             var postData = _javaScriptSerializer.Serialize(failSubmission);
 
