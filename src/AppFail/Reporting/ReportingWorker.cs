@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -74,11 +75,26 @@ namespace AppFail.Reporting
                     requestStream.Write(data, 0, data.Length);
                 }
 
-                using (var responseStream = postRequest.GetResponse().GetResponseStream())
-                using (var reader = new StreamReader(responseStream))
+                //We need to be careful here - if the remote server returned an error: (500) Internal Server Error 
+                try
                 {
-                    var result = reader.ReadToEnd();
+                    using (var responseStream = postRequest.GetResponse().GetResponseStream())
+                    {
+                        using (var reader = new StreamReader(responseStream))
+                        {
+                            var result = reader.ReadToEnd();
+                        }
+                    }
                 }
+                catch (WebException webException)
+                {
+                    Debug.WriteLine(String.Format("Could not connect to the API - {0}", webException.Message));
+                }
+                catch(Exception exception)
+                {
+                    Debug.WriteLine(String.Format("An exception occured - {0}", exception.Message));
+                }
+
 
                 return true;
             }
