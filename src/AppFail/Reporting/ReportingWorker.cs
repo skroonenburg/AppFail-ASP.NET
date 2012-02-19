@@ -52,7 +52,7 @@ namespace AppFail.Reporting
 
         private static bool PostToService(FailSubmission failSubmission)
         {
-            if (failSubmission.FailOccurrences.Count() == 0)
+            if (!failSubmission.FailOccurrences.Any())
             {
                 return true;
             }
@@ -64,7 +64,7 @@ namespace AppFail.Reporting
 
             var postData = _javaScriptSerializer.Serialize(failSubmission);
 
-            ASCIIEncoding encoding = new ASCIIEncoding();
+            var encoding = new ASCIIEncoding();
             byte[] data = encoding.GetBytes(postData);
             postRequest.ContentLength = postData.Length;
 
@@ -80,6 +80,7 @@ namespace AppFail.Reporting
                 {
                     using (var responseStream = postRequest.GetResponse().GetResponseStream())
                     {
+                        Debug.Assert(responseStream != null, "responseStream != null");
                         using (var reader = new StreamReader(responseStream))
                         {
                             var result = reader.ReadToEnd();
