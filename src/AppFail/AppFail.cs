@@ -15,8 +15,11 @@ namespace AppFail
         /// <param name="e"></param>
         public static void SendToAppFail(this Exception e)
         {
-            var failReport = FailOccurrenceFactory.FromException(HttpContext.Current, e);
-            FailQueue.Enqueue(failReport);
+            if (!IsFiltered(e))
+            {
+                var failReport = FailOccurrenceFactory.FromException(HttpContext.Current, e);
+                FailQueue.Enqueue(failReport);
+            }
         }
 
         public static IAppFailConfigurationBuilder Configure
@@ -77,6 +80,12 @@ namespace AppFail
         internal static string RenderHelperScriptIncludes()
         {
             return String.Format(@"<script src=""{0}"" type=""text/javascript""></script>", UrlLookup.GetScriptUrl);
+        }
+
+        internal static bool IsFiltered(Exception e)
+        {
+            return (ConfigurationModel.Instance.FilteredExceptionsByType != null && ConfigurationModel.Instance.FilteredExceptionsByType.Contains(e.GetType())) ||
+                   (ConfigurationModel.Instance.FilteredExceptionsByRegex != null && ConfigurationModel.Instance.FilteredExceptionsByRegex.Exists(m => m.Match(e.Message).Success));
         }
     }
 }

@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Web;
 
 namespace AppFail
 {
@@ -49,6 +52,35 @@ namespace AppFail
         public IAppFailConfigurationBuilder AppHarborCompatibilityMode(bool compatibilityMode = true)
         {
             ConfigurationModel.Instance.AppHarborCompatibilityMode = compatibilityMode;
+            return this;
+        }
+
+        public IAppFailConfigurationBuilder Filter(params Type[] exceptions)
+        {
+            ConfigurationModel.Instance.FilteredExceptionsByType.AddRange(exceptions);     
+            return this;
+        }
+
+        public IAppFailConfigurationBuilder Filter(params Regex[] exceptions)
+        {
+            ConfigurationModel.Instance.FilteredExceptionsByRegex.AddRange(exceptions);
+            return this;
+        }
+
+        public IAppFailConfigurationBuilder Filter(params String[] exceptions)
+        {
+            foreach (var exception in exceptions)
+            {
+                try
+                {
+                    ConfigurationModel.Instance.FilteredExceptionsByRegex.Add(new Regex(exception));
+                }
+                catch (Exception)
+                {
+                    Debug.WriteLine("Incorrectly specified regex statement");
+                }
+            }
+
             return this;
         }
     }

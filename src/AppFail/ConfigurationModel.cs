@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace AppFail
 {
     internal class ConfigurationModel
     {
         private ConfigurationModel()
-        {}
+        {
+            FilteredExceptionsByType = new List<Type>();
+            FilteredExceptionsByRegex = new List<Regex>();
+        }
 
         static ConfigurationModel()
         {
@@ -82,6 +86,20 @@ namespace AppFail
         private string EnforceTrailingSlash(string url)
         {
             return url.Trim().EndsWith("/") ? url : url.Trim() + "/";
+        }
+
+        private List<Type> _filteredExceptionsByType;
+        public List<Type> FilteredExceptionsByType
+        {
+            get { return _filteredExceptionsByType; }
+            set { _filteredExceptionsByType = value; }
+        }
+
+        private List<Regex> _filteredExceptionsByRegex;
+        public List<Regex> FilteredExceptionsByRegex
+        {
+            get { return _filteredExceptionsByRegex; }
+            set { _filteredExceptionsByRegex = value; }
         }
     }
 }
