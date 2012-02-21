@@ -42,9 +42,11 @@
     <Compile Include="AppFail.cs" />
     <Compile Include="AppFailConfiguration.cs" />
     <Compile Include="AppFailConfigurationBuilder.cs" />
+    <Compile Include="AppFailFilterConfigurationBuilder.cs" />
     <Compile Include="ConfigurationModel.cs" />
     <Compile Include="AppFailModule.cs" />
     <Compile Include="IAppFailConfigurationBuilder.cs" />
+    <Compile Include="IAppFailFilterConfigurationBuilder.cs" />
     <Compile Include="Model\FailSubmission.cs" />
     <Compile Include="Reporting\FailQueue.cs" />
     <Compile Include="Model\FailOccurrence.cs" />

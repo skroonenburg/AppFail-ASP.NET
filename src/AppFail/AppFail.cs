@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using System.Web;
 using AppFail.Helpers;
@@ -84,8 +85,21 @@ namespace AppFail
 
         internal static bool IsFiltered(Exception e)
         {
-            return (ConfigurationModel.Instance.FilteredExceptionsByType != null && ConfigurationModel.Instance.FilteredExceptionsByType.Contains(e.GetType())) ||
-                   (ConfigurationModel.Instance.FilteredExceptionsByRegex != null && ConfigurationModel.Instance.FilteredExceptionsByRegex.Exists(m => m.Match(e.Message).Success));
+            if (ConfigurationModel.Instance.FilteredExceptionsByLambda.Any(item => item(e)))
+            {
+                return true;
+            }
+            if (ConfigurationModel.Instance.FilteredExceptionsByType.Contains(e.GetType()))
+            {
+                return true;
+            }
+                   
+            if (ConfigurationModel.Instance.FilteredExceptionsByRegex.Exists(m => m.Match(e.Message).Success))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

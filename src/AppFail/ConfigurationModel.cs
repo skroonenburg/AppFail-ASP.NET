@@ -13,6 +13,7 @@ namespace AppFail
         {
             FilteredExceptionsByType = new List<Type>();
             FilteredExceptionsByRegex = new List<Regex>();
+            FilteredExceptionsByLambda = new List<Func<Exception, bool>>();
         }
 
         static ConfigurationModel()
@@ -100,6 +101,13 @@ namespace AppFail
         {
             get { return _filteredExceptionsByRegex; }
             set { _filteredExceptionsByRegex = value; }
+        }
+
+        private List<Func<Exception, bool>> _filteredExceptionsByLambda;
+        public List<Func<Exception, bool>> FilteredExceptionsByLambda
+        {
+            get { return _filteredExceptionsByLambda; }
+            set { _filteredExceptionsByLambda = value; }
         }
     }
 }

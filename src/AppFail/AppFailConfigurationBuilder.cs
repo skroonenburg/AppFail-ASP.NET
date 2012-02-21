@@ -10,6 +10,13 @@ namespace AppFail
 {
     internal sealed class AppFailConfigurationBuilder : IAppFailConfigurationBuilder
     {
+        private readonly IAppFailFilterConfigurationBuilder _appFailFilterConfigurationBuilder;
+
+        public AppFailConfigurationBuilder()
+        {
+            _appFailFilterConfigurationBuilder = new AppFailFilterConfigurationBuilder(this);
+        }
+
         public IAppFailConfigurationBuilder ReportingMinimumBatchSize(int minimumBatchSize)
         {
             ConfigurationModel.Instance.ReportingMinimumBatchSize = minimumBatchSize;
@@ -55,33 +62,9 @@ namespace AppFail
             return this;
         }
 
-        public IAppFailConfigurationBuilder Filter(params Type[] exceptions)
+        public IAppFailFilterConfigurationBuilder Ignore
         {
-            ConfigurationModel.Instance.FilteredExceptionsByType.AddRange(exceptions);     
-            return this;
-        }
-
-        public IAppFailConfigurationBuilder Filter(params Regex[] exceptions)
-        {
-            ConfigurationModel.Instance.FilteredExceptionsByRegex.AddRange(exceptions);
-            return this;
-        }
-
-        public IAppFailConfigurationBuilder Filter(params String[] exceptions)
-        {
-            foreach (var exception in exceptions)
-            {
-                try
-                {
-                    ConfigurationModel.Instance.FilteredExceptionsByRegex.Add(new Regex(exception));
-                }
-                catch (Exception)
-                {
-                    Debug.WriteLine("Incorrectly specified regex statement");
-                }
-            }
-
-            return this;
+            get { return _appFailFilterConfigurationBuilder; }
         }
     }
 }

@@ -54,19 +54,8 @@ namespace AppFail
         IAppFailConfigurationBuilder AppHarborCompatibilityMode(bool compatibilityMode = true);
 
         /// <summary>
-        /// Allows to fluently specify an array of exceptions that the ASP.NET module will not log
+        /// 
         /// </summary>
-        /// <param name="exception">An array of types that are exceptions</param>
-        /// <returns></returns>
-        IAppFailConfigurationBuilder Filter(params Type[] exceptions);
-
-        /// <summary>
-        /// Allows to fluently specify an array of regex expressions to filter out exceptions
-        /// </summary>
-        /// <param name="exceptions">An array of regex expressions</param>
-        /// <returns></returns>
-        IAppFailConfigurationBuilder Filter(params Regex[] exceptions);
-
-        IAppFailConfigurationBuilder Filter(params String[] exceptions);
+        IAppFailFilterConfigurationBuilder Ignore { get; }
     }
 }
