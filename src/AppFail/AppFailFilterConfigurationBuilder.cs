@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -50,6 +51,12 @@ namespace AppFail
         public IAppFailConfigurationBuilder Exception(params Func<Exception, bool>[] exception)
         {
             ConfigurationModel.Instance.FilteredExceptionsByLambda.AddRange(exception);
+            return _appFailConfigurationBuilder;
+        }
+
+        public IAppFailConfigurationBuilder HttpStatusCode(params HttpStatusCode[] httpStatusCode)
+        {
+            ConfigurationModel.Instance.FilteredExceptionsByHttpStatusCode.AddRange(httpStatusCode);
             return _appFailConfigurationBuilder;
         }
     }

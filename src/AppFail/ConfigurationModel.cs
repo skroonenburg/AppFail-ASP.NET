@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -14,6 +15,7 @@ namespace AppFail
             FilteredExceptionsByType = new List<Type>();
             FilteredExceptionsByRegex = new List<Regex>();
             FilteredExceptionsByLambda = new List<Func<Exception, bool>>();
+            FilteredExceptionsByHttpStatusCode = new List<HttpStatusCode>();
         }
 
         static ConfigurationModel()
@@ -109,5 +111,13 @@ namespace AppFail
             get { return _filteredExceptionsByLambda; }
             set { _filteredExceptionsByLambda = value; }
         }
+
+        private List<HttpStatusCode> _filteredExceptionsByHttpStatusCode;
+        public List<HttpStatusCode> FilteredExceptionsByHttpStatusCode
+        {
+            get { return _filteredExceptionsByHttpStatusCode; }
+            set { _filteredExceptionsByHttpStatusCode = value; }
+        }
+
     }
 }

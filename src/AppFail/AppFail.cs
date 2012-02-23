@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Web;
 using AppFail.Helpers;
@@ -97,6 +98,18 @@ namespace AppFail
             if (ConfigurationModel.Instance.FilteredExceptionsByRegex.Exists(m => m.Match(e.Message).Success))
             {
                 return true;
+            }
+
+            if (e is HttpException)
+            {
+                var httpCode = ((HttpException) e).GetHttpCode();
+
+                var httpStatusCode = (HttpStatusCode) httpCode;
+
+                if (ConfigurationModel.Instance.FilteredExceptionsByHttpStatusCode.Contains(httpStatusCode))
+                {
+                    return true;
+                }
             }
 
             return false;

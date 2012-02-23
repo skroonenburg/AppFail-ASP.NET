@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -35,5 +36,12 @@ namespace AppFail
         /// <param name="exception"></param>
         /// <returns></returns>
         IAppFailConfigurationBuilder Exception(params Func<Exception, bool>[] exception);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="httpStatusCode"></param>
+        /// <returns></returns>
+        IAppFailConfigurationBuilder HttpStatusCode(params HttpStatusCode[] httpStatusCode);
     }
 }
