@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
+using AppFail.Filtering;
 
 namespace AppFail
 {
@@ -41,6 +44,23 @@ namespace AppFail
         public bool ReportCurrentUsername
         {
             get { return (bool)this["reportCurrentUsername"]; }
+        }
+
+        /// <summary>
+        /// An example of what could go into web.config
+        ///  <appFail apiToken="0ece6d98-7769-xxx" baseApiUrl="http://mysite.com/" >
+        ///   <ignore>
+        ///         <add type="HttpExceptionType" value="NotImplemented" />
+        ///         <add type="HttpStatusCode" value="404" />
+        ///         <add type="ExceptionMessage" value="^favicon" />
+        ///   </ignore>
+        /// </appFail>
+        /// </summary>
+        [ConfigurationProperty("ignore", IsRequired = false, IsDefaultCollection = false)]
+        [ConfigurationCollection(typeof(ConfigurationElement))]
+        public ReferencedConfigurationElementCollection<IgnoreElement> Ignore
+        {
+            get { return (ReferencedConfigurationElementCollection<IgnoreElement>)this["ignore"]; }
         }
     }
 }

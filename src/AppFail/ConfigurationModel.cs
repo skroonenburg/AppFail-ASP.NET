@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using AppFail.Filtering;
 
 namespace AppFail
 {
@@ -117,6 +118,11 @@ namespace AppFail
         {
             get { return _filteredExceptionsByHttpStatusCode; }
             set { _filteredExceptionsByHttpStatusCode = value; }
+        }
+
+        public ReferencedConfigurationElementCollection<IgnoreElement> GetIgnoreSettingsFromWebConfig
+        {
+            get { return AppFailConfiguration.Current.Ignore; }
         }
 
     }
