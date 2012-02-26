@@ -22,7 +22,7 @@ namespace AppFail
         /// <param name="e"></param>
         public static void SendToAppFail(this Exception e)
         {
-            if (!IsFilteredByFluentExpression(e) && !IsFilteredByWebConfig(e))
+            if (!IsFilteredByFluentExpression(e) || !IsFilteredByWebConfig(e))
             {
                 var failReport = FailOccurrenceFactory.FromException(HttpContext.Current, e);
                 FailQueue.Enqueue(failReport);
