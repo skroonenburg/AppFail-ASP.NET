@@ -17,6 +17,7 @@ namespace AppFail.Model
             User = user;
             PostValuePairs = postValuePairs;
             QueryValuePairs = queryValuePairs;
+            SubmissionAttempts = 0;
         }
 
         public string RelativeUrl { get; private set; }
@@ -30,5 +31,11 @@ namespace AppFail.Model
         public string User { get; private set; }
         public string[][] PostValuePairs { get; private set; }
         public string[][] QueryValuePairs { get; private set; }
+
+        internal int SubmissionAttempts { get; private set; }
+        internal void IncrementSubmissionAttempts()
+        {
+            SubmissionAttempts += 1;
+        }
     }
 }

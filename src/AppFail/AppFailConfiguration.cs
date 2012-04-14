@@ -25,6 +25,12 @@ namespace AppFail
             get { return (int)this["reportingMinimumBatchSize"]; }
         }
 
+        [ConfigurationProperty("reportingOccurrenceMaxSizeBytes", DefaultValue = (long)102400)] // 100KB per occurrence
+        public long ReportingOccurrenceMaxSizeBytes
+        {
+            get { return (long)this["reportingOccurrenceMaxSizeBytes"]; }
+        }
+
         [ConfigurationProperty("reportingMaximumIntervalMinutes", DefaultValue = 1)]
         public int ReportingMaximumIntervalMinutes
         {

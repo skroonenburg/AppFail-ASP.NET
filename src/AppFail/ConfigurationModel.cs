@@ -64,6 +64,18 @@ namespace AppFail
             set { _appHarborCompatibilityMode = value; }
         }
 
+        private long? _reportingOccurrenceMaxSizeBytes;
+        public long ReportingOccurrenceMaxSizeBytes
+        {
+            get { return _reportingOccurrenceMaxSizeBytes ?? AppFailConfiguration.Current.ReportingOccurrenceMaxSizeBytes; }
+            set { _reportingOccurrenceMaxSizeBytes = value; }
+        }
+
+        public int ReportingSubmissionAttempts
+        {
+            get { return 3; }
+        }
+
         private static bool AppSettingsAppHarborCompatibilityMode
         {
             get

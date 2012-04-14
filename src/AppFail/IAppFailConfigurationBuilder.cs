@@ -15,6 +15,13 @@ namespace AppFail
         IAppFailConfigurationBuilder ReportingMinimumBatchSize(int minimumBatchSize);
 
         /// <summary>
+        /// Sets the maximum allowed size (in bytes) for a single fail occurrence. AppFail will reject large submissions, and
+        /// this setting tells the ASP.NET module the limit, so that it doesn't use unnecessary bandwidth.
+        /// </summary>
+        /// <param name="minimumBatchSize">The maximum allowed reporting size for a single fail occurrence, in bytes.</param>
+        IAppFailConfigurationBuilder ReportingOccurrenceMaxSizeBytes(long maxSizeBytes);
+
+        /// <summary>
         /// Sets the maximum time interval that can pass between reporting fails.
         /// If enough fails have been encountered within this interval, to satisfy the minimum batch size then the fails will be reported anyway.
         /// </summary>

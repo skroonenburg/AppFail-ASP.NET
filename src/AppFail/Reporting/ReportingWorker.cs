@@ -41,7 +41,19 @@ namespace AppFail.Reporting
             {
                 var failSubmission = new FailSubmission(ConfigurationModel.Instance.ApiToken, failOccurrences);
 
-                PostToService(failSubmission);
+                if (!PostToService(failSubmission))
+                {
+                    // Submission fails, so add these back to the reporting queue
+                    foreach (var occurrence in failOccurrences)
+                    {
+                        occurrence.IncrementSubmissionAttempts();
+
+                        if (occurrence.SubmissionAttempts < ConfigurationModel.Instance.ReportingSubmissionAttempts)
+                        {
+                            FailQueue.Enqueue(occurrence);
+                        }
+                    }
+                }
             }
 
             // Return the wait handle that will signal to
@@ -83,6 +95,10 @@ namespace AppFail.Reporting
                 return true;
             }
             catch (IOException)
+            {
+                
+            }
+            catch (WebException)
             {
 
             }

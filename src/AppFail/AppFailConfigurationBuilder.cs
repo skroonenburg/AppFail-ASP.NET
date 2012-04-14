@@ -25,6 +25,13 @@ namespace AppFail
             return this;
         }
 
+        public IAppFailConfigurationBuilder ReportingOccurrenceMaxSizeBytes(long maxSizeBytes)
+        {
+            ConfigurationModel.Instance.ReportingOccurrenceMaxSizeBytes = maxSizeBytes;
+
+            return this;
+        }
+
         public IAppFailConfigurationBuilder DoNotReportUsername
         {
             get
