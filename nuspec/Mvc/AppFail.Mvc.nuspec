@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>AppFail.Mvc</id>
-    <version>0.1.20</version>
+    <version>0.1.21</version>
     <authors>Sam Kroonenburg</authors>
     <description>Reports ASP.NET Mvcunhandled exceptions to appfail.net.</description>
     <language>en-US</language>
@@ -10,7 +10,7 @@
     <iconUrl>http://appfail.net/icon.png</iconUrl>
     <tags></tags>
     <dependencies>
-      <dependency id="AppFail.WebForms" version="0.1.17"/>
+      <dependency id="AppFail.WebForms" version="0.1.18"/>
     </dependencies>
   </metadata>
   <files>
