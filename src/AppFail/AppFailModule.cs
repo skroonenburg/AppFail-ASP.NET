@@ -79,7 +79,6 @@ namespace AppFail
 
         public void Dispose()
         {
-            
         }
     }
 }

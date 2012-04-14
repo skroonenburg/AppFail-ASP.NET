@@ -1,12 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Web;
 
 namespace AppFail
 {
     internal sealed class AppFailConfigurationBuilder : IAppFailConfigurationBuilder
     {
+        private readonly IAppFailFilterConfigurationBuilder _appFailFilterConfigurationBuilder;
+
+        public AppFailConfigurationBuilder()
+        {
+            _appFailFilterConfigurationBuilder = new AppFailFilterConfigurationBuilder(this);
+        }
+
         public IAppFailConfigurationBuilder ReportingMinimumBatchSize(int minimumBatchSize)
         {
             ConfigurationModel.Instance.ReportingMinimumBatchSize = minimumBatchSize;
@@ -57,6 +67,11 @@ namespace AppFail
         {
             ConfigurationModel.Instance.AppHarborCompatibilityMode = compatibilityMode;
             return this;
+        }
+
+        public IAppFailFilterConfigurationBuilder Ignore
+        {
+            get { return _appFailFilterConfigurationBuilder; }
         }
     }
 }

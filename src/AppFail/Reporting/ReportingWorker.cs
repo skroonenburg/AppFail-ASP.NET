@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -63,7 +64,7 @@ namespace AppFail.Reporting
 
         private static bool PostToService(FailSubmission failSubmission)
         {
-            if (failSubmission.FailOccurrences.Count() == 0)
+            if (!failSubmission.FailOccurrences.Any())
             {
                 return true;
             }
@@ -75,7 +76,7 @@ namespace AppFail.Reporting
 
             var postData = _javaScriptSerializer.Serialize(failSubmission);
 
-            ASCIIEncoding encoding = new ASCIIEncoding();
+            var encoding = new ASCIIEncoding();
             byte[] data = encoding.GetBytes(postData);
             postRequest.ContentLength = postData.Length;
 
@@ -86,11 +87,27 @@ namespace AppFail.Reporting
                     requestStream.Write(data, 0, data.Length);
                 }
 
-                using (var responseStream = postRequest.GetResponse().GetResponseStream())
-                using (var reader = new StreamReader(responseStream))
+                //We need to be careful here - if the remote server returned an error: (500) Internal Server Error 
+                try
                 {
-                    var result = reader.ReadToEnd();
+                    using (var responseStream = postRequest.GetResponse().GetResponseStream())
+                    {
+                        Debug.Assert(responseStream != null, "responseStream != null");
+                        using (var reader = new StreamReader(responseStream))
+                        {
+                            var result = reader.ReadToEnd();
+                        }
+                    }
                 }
+                catch (WebException webException)
+                {
+                    Debug.WriteLine(String.Format("Could not connect to the API - {0}", webException.Message));
+                }
+                catch(Exception exception)
+                {
+                    Debug.WriteLine(String.Format("An exception occured - {0}", exception.Message));
+                }
+
 
                 return true;
             }

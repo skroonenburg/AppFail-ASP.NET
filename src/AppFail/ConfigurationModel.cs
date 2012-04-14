@@ -2,14 +2,22 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
+using AppFail.Filtering;
 
 namespace AppFail
 {
     internal class ConfigurationModel
     {
         private ConfigurationModel()
-        {}
+        {
+            FilteredExceptionsByType = new List<Type>();
+            FilteredExceptionsByRegex = new List<Regex>();
+            FilteredExceptionsByLambda = new List<Func<Exception, bool>>();
+            FilteredExceptionsByHttpStatusCode = new List<HttpStatusCode>();
+        }
 
         static ConfigurationModel()
         {
@@ -95,5 +103,39 @@ namespace AppFail
         {
             return url.Trim().EndsWith("/") ? url : url.Trim() + "/";
         }
+
+        private List<Type> _filteredExceptionsByType;
+        public List<Type> FilteredExceptionsByType
+        {
+            get { return _filteredExceptionsByType; }
+            set { _filteredExceptionsByType = value; }
+        }
+
+        private List<Regex> _filteredExceptionsByRegex;
+        public List<Regex> FilteredExceptionsByRegex
+        {
+            get { return _filteredExceptionsByRegex; }
+            set { _filteredExceptionsByRegex = value; }
+        }
+
+        private List<Func<Exception, bool>> _filteredExceptionsByLambda;
+        public List<Func<Exception, bool>> FilteredExceptionsByLambda
+        {
+            get { return _filteredExceptionsByLambda; }
+            set { _filteredExceptionsByLambda = value; }
+        }
+
+        private List<HttpStatusCode> _filteredExceptionsByHttpStatusCode;
+        public List<HttpStatusCode> FilteredExceptionsByHttpStatusCode
+        {
+            get { return _filteredExceptionsByHttpStatusCode; }
+            set { _filteredExceptionsByHttpStatusCode = value; }
+        }
+
+        public ReferencedConfigurationElementCollection<IgnoreElement> GetIgnoreSettingsFromWebConfig
+        {
+            get { return AppFailConfiguration.Current.Ignore; }
+        }
+
     }
 }

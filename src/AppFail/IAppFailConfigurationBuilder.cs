@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace AppFail
 {
@@ -58,5 +59,10 @@ namespace AppFail
         /// </summary>
         /// <param name="compatibilityMode">A value indicating whether to enable or disable AppHarbor compatbility mode.</param>
         IAppFailConfigurationBuilder AppHarborCompatibilityMode(bool compatibilityMode = true);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        IAppFailFilterConfigurationBuilder Ignore { get; }
     }
 }
