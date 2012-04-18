@@ -69,7 +69,7 @@ namespace AppFail
             return this;
         }
 
-        public IAppFailFilterConfigurationBuilder Ignore
+        public IAppFailFilterConfigurationBuilder IgnoreExceptions
         {
             get { return _appFailFilterConfigurationBuilder; }
         }

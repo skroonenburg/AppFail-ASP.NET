@@ -132,6 +132,21 @@ namespace AppFail
             set { _filteredExceptionsByHttpStatusCode = value; }
         }
 
+        private List<string> _filteredExceptionByRelativeUrlsStartingWith;
+        public List<string> FilteredExceptionByRelativeUrlsStartingWith
+        {
+            get { return _filteredExceptionByRelativeUrlsStartingWith; }
+            set { _filteredExceptionByRelativeUrlsStartingWith = value; }
+        }
+
+        private List<string> _filteredExceptionByUrlsContaining;
+        public List<string> FilteredExceptionByRelativeUrlsContaining
+        {
+            get { return _filteredExceptionByUrlsContaining; }
+            set { _filteredExceptionByUrlsContaining = value; }
+        }
+
+
         public ReferencedConfigurationElementCollection<IgnoreElement> GetIgnoreSettingsFromWebConfig
         {
             get { return AppFailConfiguration.Current.Ignore; }

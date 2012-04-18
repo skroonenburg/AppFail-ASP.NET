@@ -20,9 +20,16 @@ namespace AppFail
         /// Sends the given exception to AppFail
         /// </summary>
         /// <param name="e"></param>
-        public static void SendToAppFail(this Exception e)
+        public static void SendToAppFail(this Exception e, HttpContextBase httpContext = null)
         {
-            if (!IsFilteredByFluentExpression(e) || !IsFilteredByWebConfig(e))
+            if (httpContext == null)
+            {
+                httpContext = new HttpContextWrapper(HttpContext.Current);
+            }
+
+            var url = httpContext.Request.Url.ToString();
+
+            if (!IsFilteredByFluentExpression(e, url) || !IsFilteredByWebConfig(e, url))
             {
                 var failReport = FailOccurrenceFactory.FromException(HttpContext.Current, e);
                 FailQueue.Enqueue(failReport);
@@ -89,18 +96,13 @@ namespace AppFail
             return String.Format(@"<script src=""{0}"" type=""text/javascript""></script>", UrlLookup.GetScriptUrl);
         }
 
-        internal static bool IsFilteredByFluentExpression(Exception e)
+        internal static bool IsFilteredByFluentExpression(Exception e, string url)
         {
-            if (ConfigurationModel.Instance.FilteredExceptionsByLambda.Any(item => item(e)))
-            {
-                return true;
-            }
-            if (ConfigurationModel.Instance.FilteredExceptionsByType.Contains(e.GetType()))
-            {
-                return true;
-            }
-                   
-            if (ConfigurationModel.Instance.FilteredExceptionsByRegex.Exists(m => m.Match(e.Message).Success))
+            if (ConfigurationModel.Instance.FilteredExceptionsByLambda.Any(item => item(e))
+                || ConfigurationModel.Instance.FilteredExceptionsByType.Contains(e.GetType())
+                || ConfigurationModel.Instance.FilteredExceptionsByRegex.Exists(m => m.Match(e.Message).Success)
+                || ConfigurationModel.Instance.FilteredExceptionByRelativeUrlsContaining.Any(u => url.Contains(u))
+                || ConfigurationModel.Instance.FilteredExceptionByRelativeUrlsStartingWith.Any(u => url.StartsWith(u)))
             {
                 return true;
             }
@@ -118,7 +120,7 @@ namespace AppFail
             return false;
         }
 
-        internal static bool IsFilteredByWebConfig(Exception e)
+        internal static bool IsFilteredByWebConfig(Exception e, string url)
         {
             if (ConfigurationModel.Instance.GetIgnoreSettingsFromWebConfig.Count > 0)
             {
@@ -168,6 +170,24 @@ namespace AppFail
                         case "HttpExceptionType":
                             {
                                 if (string.Equals(element.Value, e.GetType().Name) || string.Equals(element.Value, e.GetType().FullName))
+                                {
+                                    return true;
+                                }
+
+                                break;
+                            }
+                        case "RelativeUrlContains":
+                            {
+                                if (url != null && url.Contains(element.Value))
+                                {
+                                    return true;
+                                }
+
+                                break;
+                            }
+                        case "RelativeUrlStartsWith":
+                            {
+                                if (url != null && url.StartsWith(element.Value))
                                 {
                                     return true;
                                 }

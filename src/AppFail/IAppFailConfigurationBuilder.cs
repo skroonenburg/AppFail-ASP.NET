@@ -63,6 +63,6 @@ namespace AppFail
         /// <summary>
         /// 
         /// </summary>
-        IAppFailFilterConfigurationBuilder Ignore { get; }
+        IAppFailFilterConfigurationBuilder IgnoreExceptions { get; }
     }
 }

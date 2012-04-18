@@ -17,21 +17,35 @@ namespace AppFail
             _appFailConfigurationBuilder = pBuilder;
         }
 
-        public IAppFailConfigurationBuilder Type(params Type[] exceptions)
+        public IAppFailConfigurationBuilder WithTypes(params Type[] exceptions)
         {
             ConfigurationModel.Instance.FilteredExceptionsByType.AddRange(exceptions);
 
             return _appFailConfigurationBuilder;
         }
 
-        public IAppFailConfigurationBuilder Regex(params Regex[] exceptions)
+        public IAppFailConfigurationBuilder WithMessagesMatchingRegex(params Regex[] exceptions)
         {
             ConfigurationModel.Instance.FilteredExceptionsByRegex.AddRange(exceptions);
                 
             return _appFailConfigurationBuilder;
         }
 
-        public IAppFailConfigurationBuilder Regex(params String[] exceptions)
+        public IAppFailConfigurationBuilder WithRelativeUrlsContaining(params string[] urlsContaining)
+        {
+            ConfigurationModel.Instance.FilteredExceptionByRelativeUrlsContaining.AddRange(urlsContaining);
+
+            return _appFailConfigurationBuilder;
+        }
+
+        public IAppFailConfigurationBuilder WithRelativeUrlsStartingWith(params string[] urlsStartingWith)
+        {
+            ConfigurationModel.Instance.FilteredExceptionByRelativeUrlsStartingWith.AddRange(urlsStartingWith);
+
+            return _appFailConfigurationBuilder;
+        }
+
+        public IAppFailConfigurationBuilder WithMessagesMatchingRegex(params String[] exceptions)
         {
             foreach (var exception in exceptions)
             {
@@ -48,13 +62,13 @@ namespace AppFail
             return _appFailConfigurationBuilder;
         }
 
-        public IAppFailConfigurationBuilder Exception(params Func<Exception, bool>[] exception)
+        public IAppFailConfigurationBuilder Where(params Func<Exception, bool>[] exceptionFilterFunctions)
         {
-            ConfigurationModel.Instance.FilteredExceptionsByLambda.AddRange(exception);
+            ConfigurationModel.Instance.FilteredExceptionsByLambda.AddRange(exceptionFilterFunctions);
             return _appFailConfigurationBuilder;
         }
 
-        public IAppFailConfigurationBuilder HttpStatusCode(params HttpStatusCode[] httpStatusCode)
+        public IAppFailConfigurationBuilder WithHttpStatusCodes(params HttpStatusCode[] httpStatusCode)
         {
             ConfigurationModel.Instance.FilteredExceptionsByHttpStatusCode.AddRange(httpStatusCode);
             return _appFailConfigurationBuilder;

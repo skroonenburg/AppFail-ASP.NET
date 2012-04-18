@@ -36,6 +36,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Extensions" />
   </ItemGroup>
   <ItemGroup>
@@ -57,12 +58,6 @@
     <Compile Include="Reporting\BackgroundWorker.cs" />
     <Compile Include="Reporting\ReportingWorker.cs" />
     <Compile Include="Helpers\UrlLookup.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Content\HelperScript.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Content\HelperStyles.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

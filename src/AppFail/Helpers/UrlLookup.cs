@@ -20,12 +20,12 @@ namespace AppFail.Helpers
 
         internal static string GetScriptUrl
         {
-            get { return VirtualPathUtility.ToAbsolute("/__AppFail/Include/Script"); }
+            get { return string.Format("{0}{1}", ConfigurationModel.Instance.BaseApiUrl, "appfail-overlay.js"); }
         }
         
         internal static string GetStylesUrl
         {
-            get { return VirtualPathUtility.ToAbsolute("~/__AppFail/Include/Styles"); }
+            get { return string.Format("{0}{1}", ConfigurationModel.Instance.BaseApiUrl, "appfail-overlay.css"); }
         }
     }
 }
