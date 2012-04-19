@@ -27,7 +27,7 @@ namespace AppFail
                 httpContext = new HttpContextWrapper(HttpContext.Current);
             }
 
-            var url = httpContext.Request.Url.ToString();
+            var url = httpContext.Request.Url.AbsolutePath.ToString();
 
             if (!IsFilteredByFluentExpression(e, url) || !IsFilteredByWebConfig(e, url))
             {
