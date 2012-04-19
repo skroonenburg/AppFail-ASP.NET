@@ -17,6 +17,8 @@ namespace AppFail
             FilteredExceptionsByRegex = new List<Regex>();
             FilteredExceptionsByLambda = new List<Func<Exception, bool>>();
             FilteredExceptionsByHttpStatusCode = new List<HttpStatusCode>();
+            FilteredExceptionByRelativeUrlsContaining = new List<string>();
+            FilteredExceptionByRelativeUrlsStartingWith = new List<string>();
         }
 
         static ConfigurationModel()
@@ -65,13 +67,6 @@ namespace AppFail
             set { _reportCurrentUsername = value; }
         }
 
-        private bool? _appHarborCompatibilityMode;
-        public bool AppHarborCompatibilityMode
-        {
-            get { return _appHarborCompatibilityMode ?? AppSettingsAppHarborCompatibilityMode; }
-            set { _appHarborCompatibilityMode = value; }
-        }
-
         private long? _reportingOccurrenceMaxSizeBytes;
         public long ReportingOccurrenceMaxSizeBytes
         {
@@ -84,21 +79,6 @@ namespace AppFail
             get { return 3; }
         }
 
-        private static bool AppSettingsAppHarborCompatibilityMode
-        {
-            get
-            {
-                var mode = ConfigurationManager.AppSettings["appHarborCompatibilityMode"];
-                var modeBool = false;
-
-                if (bool.TryParse(mode, out modeBool))
-                {
-                    return modeBool;
-                }
-
-                return false;
-            }
-        }
         private string EnforceTrailingSlash(string url)
         {
             return url.Trim().EndsWith("/") ? url : url.Trim() + "/";

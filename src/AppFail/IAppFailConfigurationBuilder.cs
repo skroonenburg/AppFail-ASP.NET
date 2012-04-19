@@ -54,13 +54,6 @@ namespace AppFail
         IAppFailConfigurationBuilder BaseApiUrl(string baseApiUrl);
 
         /// <summary>
-        /// Enables compatibility settings for applications running on AppHarbor. Specifically, this means stripping internal
-        /// ports numbers when reporting referrer URLs.
-        /// </summary>
-        /// <param name="compatibilityMode">A value indicating whether to enable or disable AppHarbor compatbility mode.</param>
-        IAppFailConfigurationBuilder AppHarborCompatibilityMode(bool compatibilityMode = true);
-
-        /// <summary>
         /// 
         /// </summary>
         IAppFailFilterConfigurationBuilder IgnoreExceptions { get; }

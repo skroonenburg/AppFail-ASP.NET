@@ -63,12 +63,6 @@ namespace AppFail
             return this;
         }
 
-        public IAppFailConfigurationBuilder AppHarborCompatibilityMode(bool compatibilityMode = true)
-        {
-            ConfigurationModel.Instance.AppHarborCompatibilityMode = compatibilityMode;
-            return this;
-        }
-
         public IAppFailFilterConfigurationBuilder IgnoreExceptions
         {
             get { return _appFailFilterConfigurationBuilder; }

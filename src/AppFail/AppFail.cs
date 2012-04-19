@@ -49,30 +49,11 @@ namespace AppFail
             }
         }
 
-        public static string GetPublicCurrentUrl(HttpRequest request)
-        {
-            var uriBuilder = new UriBuilder
-            {
-                Host = request.Url.Host,
-                Path = request.Url.AbsolutePath,
-                Port = request.Url.Port,
-                Scheme = request.Url.Scheme
-            };
-
-            if (ConfigurationModel.Instance.AppHarborCompatibilityMode)
-            {
-                uriBuilder.Port = 80;
-            }
-
-            return uriBuilder.Uri.ToString();
-        }
-
         internal static string EncodedCurrentUrl
         {
             get
             {
-                var url = GetPublicCurrentUrl(HttpContext.Current.Request);
-                return Convert.ToBase64String(Encoding.UTF8.GetBytes(url));
+                return Convert.ToBase64String(Encoding.UTF8.GetBytes(HttpContext.Current.Request.Url.AbsolutePath));
             }
         }
 
