@@ -67,11 +67,6 @@ namespace AppFail
             return String.Format(@"<script src=""{0}{1}"" type=""text/javascript""></script>", UrlLookup.GetFailsUrl, HttpUtility.UrlEncode(EncodedCurrentUrl));
         }
 
-        public static string RenderStyles()
-        {
-            return String.Format(@"<link rel=""stylesheet"" type=""text/css"" href=""{0}""/>", UrlLookup.GetStylesUrl);
-        }
-
         internal static string RenderHelperScriptIncludes()
         {
             return String.Format(@"<script src=""{0}"" type=""text/javascript""></script>", UrlLookup.GetScriptUrl);

@@ -13,10 +13,5 @@ namespace AppFail.Mvc
         {
             return MvcHtmlString.Create(AppFail.RenderIncludes());
         }
-
-        public static MvcHtmlString AppFailStyles(this HtmlHelper htmlHelper)
-        {
-            return MvcHtmlString.Create(AppFail.RenderStyles());
-        }
     }
 }
