@@ -12,10 +12,6 @@ namespace AppFail.Model
             var urlReferrer = request.UrlReferrer != null ? request.UrlReferrer.ToString() : null;
 
             var relativeUrl = request.Url != null ? request.Url.AbsolutePath : null;
-            if (relativeUrl != null && relativeUrl.Length > 0)
-            {
-                relativeUrl = relativeUrl.Substring(1);
-            }
 
             string user = null;
 
