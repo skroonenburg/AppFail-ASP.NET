@@ -30,7 +30,18 @@ namespace AppFail.Model
             var postValuePairs = request.Form.Keys.OfType<string>().Select(k => new string[] {k, request.Form[k]}).ToArray();
             var queryValuePairs = request.QueryString.Keys.OfType<string>().Select(k => new string[] { k, request.QueryString[k] }).ToArray();
 
-            var report = new FailOccurrence(e.GetType().FullName, e.StackTrace, relativeUrl, request.HttpMethod, urlReferrer, e.Message, DateTime.UtcNow, user, postValuePairs, queryValuePairs);
+            var report = new FailOccurrence(e.GetType().FullName,
+                                            e.StackTrace,
+                                            request.Url.Scheme.ToLowerInvariant(),
+                                            request.Url.Host.ToUpperInvariant().StartsWith("WWW."),
+                                            relativeUrl,
+                                            request.HttpMethod,
+                                            urlReferrer,
+                                            e.Message,
+                                            DateTime.UtcNow,
+                                            user,
+                                            postValuePairs,
+                                            queryValuePairs);
 
             return report;
         }
