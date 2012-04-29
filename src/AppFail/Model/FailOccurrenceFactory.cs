@@ -11,7 +11,7 @@ namespace AppFail.Model
             var request = httpContext.Request;
             var urlReferrer = request.UrlReferrer != null ? request.UrlReferrer.ToString() : null;
 
-            var relativeUrl = request.Url != null ? request.Url.AbsolutePath : null;
+            var relativeUrl = request.Url != null ? request.Url.ToString() : null;
 
             string user = null;
 
@@ -32,8 +32,6 @@ namespace AppFail.Model
 
             var report = new FailOccurrence(e.GetType().FullName,
                                             e.StackTrace,
-                                            request.Url.Scheme.ToLowerInvariant(),
-                                            request.Url.Host.ToUpperInvariant().StartsWith("WWW."),
                                             relativeUrl,
                                             request.HttpMethod,
                                             urlReferrer,
