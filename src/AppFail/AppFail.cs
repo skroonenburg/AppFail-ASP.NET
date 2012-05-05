@@ -29,7 +29,7 @@ namespace AppFail
 
             var url = httpContext.Request.Url.AbsolutePath.ToString();
 
-            if (!IsFilteredByFluentExpression(e, url) || !IsFilteredByWebConfig(e, url))
+            if (!IsFilteredByFluentExpression(e, url) && !IsFilteredByWebConfig(e, url))
             {
                 var failReport = FailOccurrenceFactory.FromException(HttpContext.Current, e);
                 FailQueue.Enqueue(failReport);
@@ -62,6 +62,12 @@ namespace AppFail
             return String.Format(@"<script src=""{0}"" type=""text/javascript""></script>", UrlLookup.GetScriptUrl);
         }
 
+        internal static bool IsPostFiltered(string name)
+        {
+            return ConfigurationModel.Instance.FilteredPostNamesContaining.Any(x => name.Contains(x))
+                   || ConfigurationModel.Instance.IgnorePostValuesSettingsFromWebConfig.Any(x => name.Contains(x.NameContains));
+        }
+
         internal static bool IsFilteredByFluentExpression(Exception e, string url)
         {
             if (ConfigurationModel.Instance.FilteredExceptionsByLambda.Any(item => item(e))
@@ -88,9 +94,9 @@ namespace AppFail
 
         internal static bool IsFilteredByWebConfig(Exception e, string url)
         {
-            if (ConfigurationModel.Instance.GetIgnoreSettingsFromWebConfig.Count > 0)
+            if (ConfigurationModel.Instance.IgnoreExceptionSettingsFromWebConfig.Count > 0)
             {
-                foreach (var element in ConfigurationModel.Instance.GetIgnoreSettingsFromWebConfig)
+                foreach (var element in ConfigurationModel.Instance.IgnoreExceptionSettingsFromWebConfig)
                 {
                     switch (element.Type)
                     {

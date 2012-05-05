@@ -40,7 +40,7 @@ namespace AppFail
             get { return (int)this["reportingMaximumIntervalMinutes"]; }
         }
 
-        [ConfigurationProperty("baseApiUrl", DefaultValue = "http://api.appfail.net/")]
+        [ConfigurationProperty("baseApiUrl", DefaultValue = "https://api.appfail.net/")]
         public string BaseApiUrl
         {
             get { return (string)this["baseApiUrl"]; }
@@ -54,19 +54,36 @@ namespace AppFail
 
         /// <summary>
         /// An example of what could go into web.config
-        ///  <appFail apiToken="0ece6d98-7769-xxx" baseApiUrl="http://mysite.com/" >
-        ///   <ignore>
+        ///  <appFail apiToken="0ece6d98-7769-xxx" >
+        ///   <ignoreExceptions>
         ///         <add type="HttpExceptionType" value="NotImplemented" />
         ///         <add type="HttpStatusCode" value="404" />
         ///         <add type="ExceptionMessage" value="^favicon" />
-        ///   </ignore>
+        ///   </ignoreExceptions>
         /// </appFail>
         /// </summary>
-        [ConfigurationProperty("ignore", IsRequired = false, IsDefaultCollection = false)]
+        [ConfigurationProperty("ignoreExceptions", IsRequired = false, IsDefaultCollection = false)]
         [ConfigurationCollection(typeof(ConfigurationElement))]
-        public ReferencedConfigurationElementCollection<IgnoreElement> Ignore
+        public ReferencedConfigurationElementCollection<IgnoreExceptionElement> IgnoreExceptions
         {
-            get { return (ReferencedConfigurationElementCollection<IgnoreElement>)this["ignore"]; }
+            get { return (ReferencedConfigurationElementCollection<IgnoreExceptionElement>)this["ignoreExceptions"]; }
+        }
+
+        /// <summary>
+        /// An example of what could go into web.config
+        ///  <appFail apiToken="0ece6d98-7769-xxx" >
+        ///   <ignorePostValues>
+        ///         <add nameContains="CreditCardNumber" />
+        ///         <add nameContains="CCV" />
+        ///         <add nameContains="Password" />
+        ///   </ignorePostValues>
+        /// </appFail>
+        /// </summary>
+        [ConfigurationProperty("ignorePostValues", IsRequired = false, IsDefaultCollection = false)]
+        [ConfigurationCollection(typeof(ConfigurationElement))]
+        public ReferencedConfigurationElementCollection<IgnorePostValueElement> IgnorePostValues
+        {
+            get { return (ReferencedConfigurationElementCollection<IgnorePostValueElement>)this["ignorePostValues"]; }
         }
     }
 }

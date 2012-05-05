@@ -43,7 +43,7 @@ namespace AppFail.Reporting
                     // Start the background thread worker
                     _runningThread = new Thread(new ThreadStart(Run));
                     _runningThread.Start();
-                    }
+                }
             }
         }
 

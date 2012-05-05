@@ -54,8 +54,13 @@ namespace AppFail
         IAppFailConfigurationBuilder BaseApiUrl(string baseApiUrl);
 
         /// <summary>
-        /// 
+        /// Do not report exceptions matching the following criteria
         /// </summary>
         IAppFailFilterConfigurationBuilder IgnoreExceptions { get; }
+
+        /// <summary>
+        /// Do not report form POST values matching the following criteria
+        /// </summary>
+        IAppFailFilterQueryPostConfigurationBuilder IgnorePostValues { get; }
     }
 }

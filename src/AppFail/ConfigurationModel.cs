@@ -19,6 +19,7 @@ namespace AppFail
             FilteredExceptionsByHttpStatusCode = new List<HttpStatusCode>();
             FilteredExceptionByRelativeUrlsContaining = new List<string>();
             FilteredExceptionByRelativeUrlsStartingWith = new List<string>();
+            FilteredPostNamesContaining = new List<string>();
         }
 
         static ConfigurationModel()
@@ -126,11 +127,21 @@ namespace AppFail
             set { _filteredExceptionByUrlsContaining = value; }
         }
 
-
-        public ReferencedConfigurationElementCollection<IgnoreElement> GetIgnoreSettingsFromWebConfig
+        private List<string> _filteredPostNamesContaining;
+        public List<string> FilteredPostNamesContaining
         {
-            get { return AppFailConfiguration.Current.Ignore; }
+            get { return _filteredPostNamesContaining; }
+            set { _filteredPostNamesContaining = value; }
         }
 
+        public ReferencedConfigurationElementCollection<IgnoreExceptionElement> IgnoreExceptionSettingsFromWebConfig
+        {
+            get { return AppFailConfiguration.Current.IgnoreExceptions; }
+        }
+
+        public ReferencedConfigurationElementCollection<IgnorePostValueElement> IgnorePostValuesSettingsFromWebConfig
+        {
+            get { return AppFailConfiguration.Current.IgnorePostValues; }
+        }
     }
 }

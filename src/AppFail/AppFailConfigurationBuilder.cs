@@ -11,10 +11,12 @@ namespace AppFail
     internal sealed class AppFailConfigurationBuilder : IAppFailConfigurationBuilder
     {
         private readonly IAppFailFilterConfigurationBuilder _appFailFilterConfigurationBuilder;
+        private readonly IAppFailFilterQueryPostConfigurationBuilder _appFailFilterQueryPostConfigurationBuilder;
 
         public AppFailConfigurationBuilder()
         {
             _appFailFilterConfigurationBuilder = new AppFailFilterConfigurationBuilder(this);
+            _appFailFilterQueryPostConfigurationBuilder = new AppFailFilterQueryPostConfigurationBuilder(this);
         }
 
         public IAppFailConfigurationBuilder ReportingMinimumBatchSize(int minimumBatchSize)
@@ -66,6 +68,11 @@ namespace AppFail
         public IAppFailFilterConfigurationBuilder IgnoreExceptions
         {
             get { return _appFailFilterConfigurationBuilder; }
+        }
+
+        public IAppFailFilterQueryPostConfigurationBuilder IgnorePostValues
+        {
+            get { return _appFailFilterQueryPostConfigurationBuilder; }
         }
     }
 }

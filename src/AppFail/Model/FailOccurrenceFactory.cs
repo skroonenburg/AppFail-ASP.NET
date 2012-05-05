@@ -27,8 +27,13 @@ namespace AppFail.Model
                 }
             }
 
-            var postValuePairs = request.Form.Keys.OfType<string>().Select(k => new string[] {k, request.Form[k]}).ToArray();
-            var queryValuePairs = request.QueryString.Keys.OfType<string>().Select(k => new string[] { k, request.QueryString[k] }).ToArray();
+            // Filter query & post value pairs according to locally defined rules
+            var postValuePairs = request.Form.Keys.OfType<string>()
+                                        .Where(x => !AppFail.IsPostFiltered(x))
+                                        .Select(k => new string[] { k, request.Form[k] }).ToArray();
+            var queryValuePairs = request.QueryString.Keys.OfType<string>()
+                                        .Where(x => !AppFail.IsPostFiltered(x))
+                                        .Select(k => new string[] { k, request.QueryString[k] }).ToArray();
 
             var report = new FailOccurrence(e.GetType().FullName,
                                             e.StackTrace,
