@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>AppFail.WebForms</id>
-    <version>0.1.35</version>
+    <version>0.1.36</version>
     <authors>Sam Kroonenburg</authors>
     <description>Reports ASP.NET WebForms unhandled exceptions to appfail.net.</description>
     <language>en-US</language>

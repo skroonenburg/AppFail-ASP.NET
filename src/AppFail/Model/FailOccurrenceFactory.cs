@@ -28,12 +28,21 @@ namespace AppFail.Model
             }
 
             // Filter query & post value pairs according to locally defined rules
-            var postValuePairs = request.Form.Keys.OfType<string>()
+            string[][] postValuePairs = null;
+            string[][] queryValuePairs = null;
+
+            try
+            {
+                queryValuePairs = request.QueryString.Keys.OfType<string>()
+                    .Where(x => !AppFail.IsPostFiltered(x))
+                    .Select(k => new string[] {k, request.QueryString[k]}).ToArray();
+
+                postValuePairs = request.Form.Keys.OfType<string>()
                                         .Where(x => !AppFail.IsPostFiltered(x))
                                         .Select(k => new string[] { k, request.Form[k] }).ToArray();
-            var queryValuePairs = request.QueryString.Keys.OfType<string>()
-                                        .Where(x => !AppFail.IsPostFiltered(x))
-                                        .Select(k => new string[] { k, request.QueryString[k] }).ToArray();
+            }
+            catch (HttpRequestValidationException)
+            {}
 
             var report = new FailOccurrence(e.GetType().FullName,
                                             e.StackTrace,
