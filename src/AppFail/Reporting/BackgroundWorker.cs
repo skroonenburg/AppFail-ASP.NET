@@ -49,16 +49,25 @@ namespace AppFail.Reporting
 
         public void Run()
         {
-            WaitHandle waitHandle;
- 
-            do
+            try
             {
-                // Do the work here
-                waitHandle = DoWork();
-            }
-            while (WaitHandle.WaitAny(new WaitHandle[] { _shuttingDownSignal, waitHandle }, ConfigurationModel.Instance.ReportingMaximumInterval) != 0);
+                WaitHandle waitHandle;
+ 
+                do
+                {
+                    // Do the work here
+                    waitHandle = DoWork();
+                }
+                while (WaitHandle.WaitAny(new WaitHandle[] { _shuttingDownSignal, waitHandle }, ConfigurationModel.Instance.ReportingMaximumInterval) != 0);
 
-            _shutDownSignal.Set();
+                _shutDownSignal.Set();
+            }
+            catch (Exception)
+            {
+                // Yes this is a catch-all exception, but warranted here. AppFail's reporting module
+                // should NEVER cause an unhandled exception. We can't be bringing down client applications.
+                // We could try to restart the thread here... but let's err on the side of caution on not cause error loops.
+            }
         }
 
         /// <summary>

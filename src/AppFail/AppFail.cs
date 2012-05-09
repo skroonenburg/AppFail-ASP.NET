@@ -22,17 +22,30 @@ namespace AppFail
         /// <param name="e"></param>
         public static void SendToAppFail(this Exception e, HttpContextBase httpContext = null)
         {
-            if (httpContext == null)
+            if (e == null)
             {
-                httpContext = new HttpContextWrapper(HttpContext.Current);
+                return;
             }
 
-            var url = httpContext.Request.Url.AbsolutePath.ToString();
-
-            if (!IsFilteredByFluentExpression(e, url) && !IsFilteredByWebConfig(e, url))
+            try
             {
-                var failReport = FailOccurrenceFactory.FromException(HttpContext.Current, e);
-                FailQueue.Enqueue(failReport);
+                if (httpContext == null)
+                {
+                    httpContext = new HttpContextWrapper(HttpContext.Current);
+                }
+
+                var url = httpContext.Request.Url.AbsolutePath.ToString();
+
+                if (!IsFilteredByFluentExpression(e, url) && !IsFilteredByWebConfig(e, url))
+                {
+                    var failReport = FailOccurrenceFactory.FromException(HttpContext.Current, e);
+                    FailQueue.Enqueue(failReport);
+                }
+            }
+            catch (Exception)
+            {
+                // Yes this is a catch-all exception, but warranted here. AppFail's reporting module
+                // should NEVER cause an unhandled exception. We can't be bringing down client applications.
             }
         }
 
