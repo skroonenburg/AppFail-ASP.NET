@@ -22,17 +22,30 @@ namespace AppFail
         /// <param name="e"></param>
         public static void SendToAppFail(this Exception e, HttpContextBase httpContext = null)
         {
-            if (httpContext == null)
+            if (e == null)
             {
-                httpContext = new HttpContextWrapper(HttpContext.Current);
+                return;
             }
 
-            var url = httpContext.Request.Url.AbsolutePath.ToString();
-
-            if (!IsFilteredByFluentExpression(e, url) || !IsFilteredByWebConfig(e, url))
+            try
             {
-                var failReport = FailOccurrenceFactory.FromException(HttpContext.Current, e);
-                FailQueue.Enqueue(failReport);
+                if (httpContext == null)
+                {
+                    httpContext = new HttpContextWrapper(HttpContext.Current);
+                }
+
+                var url = httpContext.Request.Url.AbsolutePath.ToString();
+
+                if (!IsFilteredByFluentExpression(e, url) && !IsFilteredByWebConfig(e, url))
+                {
+                    var failReport = FailOccurrenceFactory.FromException(HttpContext.Current, e);
+                    FailQueue.Enqueue(failReport);
+                }
+            }
+            catch (Exception)
+            {
+                // Yes this is a catch-all exception, but warranted here. AppFail's reporting module
+                // should NEVER cause an unhandled exception. We can't be bringing down client applications.
             }
         }
 
@@ -59,17 +72,13 @@ namespace AppFail
 
         public static string RenderIncludes()
         {
-            return String.Format("{0}{1}", RenderHelperScriptIncludes(), RenderErrorDataIncludes());
-        }
-
-        internal static string RenderErrorDataIncludes()
-        {
-            return String.Format(@"<script src=""{0}{1}"" type=""text/javascript""></script>", UrlLookup.GetFailsUrl, HttpUtility.UrlEncode(EncodedCurrentUrl));
-        }
-
-        internal static string RenderHelperScriptIncludes()
-        {
             return String.Format(@"<script src=""{0}"" type=""text/javascript""></script>", UrlLookup.GetScriptUrl);
+        }
+
+        internal static bool IsPostFiltered(string name)
+        {
+            return ConfigurationModel.Instance.FilteredPostNamesContaining.Any(x => name.Contains(x))
+                   || ConfigurationModel.Instance.IgnorePostValuesSettingsFromWebConfig.Any(x => name.Contains(x.NameContains));
         }
 
         internal static bool IsFilteredByFluentExpression(Exception e, string url)
@@ -98,9 +107,9 @@ namespace AppFail
 
         internal static bool IsFilteredByWebConfig(Exception e, string url)
         {
-            if (ConfigurationModel.Instance.GetIgnoreSettingsFromWebConfig.Count > 0)
+            if (ConfigurationModel.Instance.IgnoreExceptionSettingsFromWebConfig.Count > 0)
             {
-                foreach (var element in ConfigurationModel.Instance.GetIgnoreSettingsFromWebConfig)
+                foreach (var element in ConfigurationModel.Instance.IgnoreExceptionSettingsFromWebConfig)
                 {
                     switch (element.Type)
                     {

@@ -6,9 +6,9 @@ using System.Text;
 
 namespace AppFail.Filtering
 {
-    public class IgnoreElement : ConfigurationElement
+    public class IgnoreExceptionElement : ConfigurationElement
     {
-        public IgnoreElement()
+        public IgnoreExceptionElement()
         {
         }
 

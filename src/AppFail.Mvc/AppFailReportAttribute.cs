@@ -16,8 +16,11 @@ namespace AppFail.Mvc
     {
         public void OnException(ExceptionContext filterContext)
         {
-            // Send this exception to appfail
-            filterContext.Exception.SendToAppFail();
+            // Only log handled exceptions. AppFail will catch all unhandled exceptions anyway.
+            if (filterContext.ExceptionHandled)
+            {
+                filterContext.Exception.SendToAppFail();
+            }
         }
     }
 }

@@ -9,7 +9,12 @@ namespace AppFail.Mvc
 {
     public static class AppFailHtmlHelpers
     {
-        public static MvcHtmlString AppFailIncludes(this HtmlHelper htmlHelper)
+        /// <summary>
+        /// Includes a script tag to load the AppFail overlay on this page.
+        /// </summary>
+        /// <param name="htmlHelper"></param>
+        /// <returns></returns>
+        public static MvcHtmlString IncludeAppFailOverlay(this HtmlHelper htmlHelper)
         {
             return MvcHtmlString.Create(AppFail.RenderIncludes());
         }

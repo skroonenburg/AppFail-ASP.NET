@@ -4,12 +4,12 @@ namespace AppFail.Model
 {
     internal class FailOccurrence
     {
-        internal FailOccurrence(string exceptionType, string stackTrace, string relativeUrl, string verb, string relativeReferrerUrl, string exceptionMessage, DateTime occurrenceTimeUtc, string user, string[][] postValuePairs, string [][] queryValuePairs)
+        internal FailOccurrence(string exceptionType, string stackTrace, string relativeUrl, string verb, string referrerUrl, string exceptionMessage, DateTime occurrenceTimeUtc, string user, string[][] postValuePairs, string [][] queryValuePairs)
         {
             ExceptionType = exceptionType;
             StackTrace = stackTrace;
             HttpVerb = verb;
-            RelativeReferrerUrl = relativeReferrerUrl;
+            ReferrerUrl = referrerUrl;
             ExceptionMessage = exceptionMessage;
             RelativeUrl = relativeUrl;
             ApplicationType = "ASP.NET";
@@ -24,7 +24,7 @@ namespace AppFail.Model
         public string ExceptionType { get; private set; }
         public string StackTrace { get; private set; }
         public string HttpVerb { get; private set; }
-        public string RelativeReferrerUrl { get; private set; }
+        public string ReferrerUrl { get; private set; }
         public string ExceptionMessage { get; private set; }
         public string ApplicationType { get; private set; }
         public string OccurrenceTimeUtc { get; private set; }

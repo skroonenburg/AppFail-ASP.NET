@@ -46,7 +46,10 @@
     <Compile Include="AppFailFilterConfigurationBuilder.cs" />
     <Compile Include="ConfigurationModel.cs" />
     <Compile Include="AppFailModule.cs" />
-    <Compile Include="Filtering\IgnoreElement.cs" />
+    <Compile Include="AppFailFilterQueryPostConfigurationBuilder.cs" />
+    <Compile Include="Filtering\IgnorePostValueElement.cs" />
+    <Compile Include="IAppFailFilterQueryPostConfigurationBuilder.cs" />
+    <Compile Include="Filtering\IgnoreExceptionElement.cs" />
     <Compile Include="Filtering\ReferencedConfigurationElementCollection.cs" />
     <Compile Include="IAppFailConfigurationBuilder.cs" />
     <Compile Include="IAppFailFilterConfigurationBuilder.cs" />

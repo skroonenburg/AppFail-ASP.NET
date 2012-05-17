@@ -11,7 +11,7 @@ namespace AppFail.Model
             var request = httpContext.Request;
             var urlReferrer = request.UrlReferrer != null ? request.UrlReferrer.ToString() : null;
 
-            var relativeUrl = request.Url != null ? request.Url.AbsolutePath : null;
+            var relativeUrl = request.Url != null ? request.Url.ToString() : null;
 
             string user = null;
 
@@ -27,10 +27,33 @@ namespace AppFail.Model
                 }
             }
 
-            var postValuePairs = request.Form.Keys.OfType<string>().Select(k => new string[] {k, request.Form[k]}).ToArray();
-            var queryValuePairs = request.QueryString.Keys.OfType<string>().Select(k => new string[] { k, request.QueryString[k] }).ToArray();
+            // Filter query & post value pairs according to locally defined rules
+            string[][] postValuePairs = null;
+            string[][] queryValuePairs = null;
 
-            var report = new FailOccurrence(e.GetType().FullName, e.StackTrace, relativeUrl, request.HttpMethod, urlReferrer, e.Message, DateTime.UtcNow, user, postValuePairs, queryValuePairs);
+            try
+            {
+                queryValuePairs = request.QueryString.Keys.OfType<string>()
+                    .Where(x => !AppFail.IsPostFiltered(x))
+                    .Select(k => new string[] {k, request.QueryString[k]}).ToArray();
+
+                postValuePairs = request.Form.Keys.OfType<string>()
+                                        .Where(x => !AppFail.IsPostFiltered(x))
+                                        .Select(k => new string[] { k, request.Form[k] }).ToArray();
+            }
+            catch (HttpRequestValidationException)
+            {}
+
+            var report = new FailOccurrence(e.GetType().FullName,
+                                            e.StackTrace,
+                                            relativeUrl,
+                                            request.HttpMethod,
+                                            urlReferrer,
+                                            e.Message,
+                                            DateTime.UtcNow,
+                                            user,
+                                            postValuePairs,
+                                            queryValuePairs);
 
             return report;
         }
