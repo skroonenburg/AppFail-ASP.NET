@@ -52,7 +52,7 @@ namespace AppFail
             get { return (bool)this["reportCurrentUsername"]; }
         }
 
-        [ConfigurationProperty("disableInDebugMode", DefaultValue = true)]
+        [ConfigurationProperty("disableInDebugMode", DefaultValue = false)]
         public bool DisableInDebugMode
         {
             get { return (bool)this["disableInDebugMode"]; }
