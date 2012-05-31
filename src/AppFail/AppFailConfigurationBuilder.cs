@@ -53,6 +53,16 @@ namespace AppFail
             }
         }
 
+        public IAppFailConfigurationBuilder DisableInDebugMode
+        {
+            get
+            {
+                ConfigurationModel.Instance.DisableInDebugMode = true;
+
+                return this;
+            }
+        }
+
         public IAppFailConfigurationBuilder ApiToken(string apiToken)
         {
             ConfigurationModel.Instance.ApiToken = apiToken;

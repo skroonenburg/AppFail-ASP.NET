@@ -68,6 +68,13 @@ namespace AppFail
             set { _reportCurrentUsername = value; }
         }
 
+        private bool? _disableInDebugMode;
+        public bool DisableInDebugMode
+        {
+            get { return _disableInDebugMode ?? AppFailConfiguration.Current.DisableInDebugMode; }
+            set { _disableInDebugMode = value; }
+        }
+
         private long? _reportingOccurrenceMaxSizeBytes;
         public long ReportingOccurrenceMaxSizeBytes
         {

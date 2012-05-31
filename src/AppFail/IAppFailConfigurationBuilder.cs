@@ -42,6 +42,11 @@ namespace AppFail
         IAppFailConfigurationBuilder DoNotReportUsername { get; }
 
         /// <summary>
+        /// Instructs AppFail not to report the failures when the application is running in debug mode.
+        /// </summary>
+        IAppFailConfigurationBuilder DisableInDebugMode { get; }
+
+        /// <summary>
         /// Sets the API token for this application, as provided in the AppFail portal.
         /// </summary>
         /// <param name="apiToken">The API token used to authenticate with AppFail.</param>

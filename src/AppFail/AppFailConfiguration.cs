@@ -52,6 +52,12 @@ namespace AppFail
             get { return (bool)this["reportCurrentUsername"]; }
         }
 
+        [ConfigurationProperty("disableInDebugMode", DefaultValue = true)]
+        public bool DisableInDebugMode
+        {
+            get { return (bool)this["disableInDebugMode"]; }
+        }
+
         /// <summary>
         /// An example of what could go into web.config
         ///  <appFail apiToken="0ece6d98-7769-xxx" >
