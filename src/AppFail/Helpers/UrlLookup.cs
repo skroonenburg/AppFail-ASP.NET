@@ -1,7 +1,4 @@
-﻿using System;
-using System.Web;
-
-namespace AppFail.Helpers
+﻿namespace Appfail.Reporting.Helpers
 {
     internal static class UrlLookup
     {

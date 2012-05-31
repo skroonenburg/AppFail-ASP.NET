@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AppFail.Model
+namespace Appfail.Reporting.Model
 {
     internal class FailOccurrence
     {

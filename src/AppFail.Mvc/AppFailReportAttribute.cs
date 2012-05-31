@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Web.Mvc;
 
-namespace AppFail.Mvc
+namespace Appfail.Reporting.Mvc
 {
     /// <summary>
     /// A filter that causes all filters thrown by controller actions to be reported to AppFail.
@@ -12,7 +9,7 @@ namespace AppFail.Mvc
     /// HandleError, so that it is called for all exceptions.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
-    public class AppFailReportAttribute : FilterAttribute, IExceptionFilter
+    public class AppfailReportAttribute : FilterAttribute, IExceptionFilter
     {
         public void OnException(ExceptionContext filterContext)
         {

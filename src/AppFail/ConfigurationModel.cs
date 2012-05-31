@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Text.RegularExpressions;
-using AppFail.Filtering;
+using Appfail.Reporting.Filtering;
 
-namespace AppFail
+namespace Appfail.Reporting
 {
     internal class ConfigurationModel
     {
@@ -34,14 +31,14 @@ namespace AppFail
         private int? _reportingMinimumBatchSize;
         public int ReportingMinimumBatchSize
         {
-            get { return _reportingMinimumBatchSize ?? AppFailConfiguration.Current.ReportingMinimumBatchSize; }
+            get { return _reportingMinimumBatchSize ?? AppfailConfiguration.Current.ReportingMinimumBatchSize; }
             set { _reportingMinimumBatchSize = value; }
         }
 
         private TimeSpan? _reportingMaximumInterval;
         public TimeSpan ReportingMaximumInterval
         {
-            get { return _reportingMaximumInterval ?? TimeSpan.FromMinutes(AppFailConfiguration.Current.ReportingMaximumIntervalMinutes); }
+            get { return _reportingMaximumInterval ?? TimeSpan.FromMinutes(AppfailConfiguration.Current.ReportingMaximumIntervalMinutes); }
             set { _reportingMaximumInterval = value; }
         }
 
@@ -50,28 +47,28 @@ namespace AppFail
         private string _apiToken;
         public string ApiToken
         {
-            get { return _apiToken ?? AppFailConfiguration.Current.ApiToken; }
+            get { return _apiToken ?? AppfailConfiguration.Current.ApiToken; }
             set { _apiToken = value; }
         }
 
         private string _baseApiUrl;
         public string BaseApiUrl
         {
-            get { return EnforceTrailingSlash(_baseApiUrl ?? AppFailConfiguration.Current.BaseApiUrl); }
+            get { return EnforceTrailingSlash(_baseApiUrl ?? AppfailConfiguration.Current.BaseApiUrl); }
             set { _baseApiUrl = value; }
         }
 
         private bool? _reportCurrentUsername;
         public bool ReportCurrentUsername
         {
-            get { return _reportCurrentUsername ?? AppFailConfiguration.Current.ReportCurrentUsername; }
+            get { return _reportCurrentUsername ?? AppfailConfiguration.Current.ReportCurrentUsername; }
             set { _reportCurrentUsername = value; }
         }
 
         private long? _reportingOccurrenceMaxSizeBytes;
         public long ReportingOccurrenceMaxSizeBytes
         {
-            get { return _reportingOccurrenceMaxSizeBytes ?? AppFailConfiguration.Current.ReportingOccurrenceMaxSizeBytes; }
+            get { return _reportingOccurrenceMaxSizeBytes ?? AppfailConfiguration.Current.ReportingOccurrenceMaxSizeBytes; }
             set { _reportingOccurrenceMaxSizeBytes = value; }
         }
 
@@ -136,12 +133,12 @@ namespace AppFail
 
         public ReferencedConfigurationElementCollection<IgnoreExceptionElement> IgnoreExceptionSettingsFromWebConfig
         {
-            get { return AppFailConfiguration.Current.IgnoreExceptions; }
+            get { return AppfailConfiguration.Current.IgnoreExceptions; }
         }
 
         public ReferencedConfigurationElementCollection<IgnorePostValueElement> IgnorePostValuesSettingsFromWebConfig
         {
-            get { return AppFailConfiguration.Current.IgnorePostValues; }
+            get { return AppfailConfiguration.Current.IgnorePostValues; }
         }
     }
 }

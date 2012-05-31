@@ -2,15 +2,15 @@
 <package>
   <metadata>
     <id>AppFail.Mvc</id>
-    <version>0.1.37</version>
+    <version>1.0.0</version>
     <authors>Sam Kroonenburg</authors>
     <description>Reports ASP.NET Mvcunhandled exceptions to appfail.net.</description>
     <language>en-US</language>
     <projectUrl>http://appfail.net</projectUrl>
-    <iconUrl>http://appfail.net/icon.png</iconUrl>
+    <iconUrl>http://appfail.net/assets/img/nuget-icon.png</iconUrl>
     <tags></tags>
     <dependencies>
-      <dependency id="AppFail.WebForms" version="0.1.37"/>
+      <dependency id="AppFail.WebForms" version="1.0.0"/>
     </dependencies>
   </metadata>
   <files>

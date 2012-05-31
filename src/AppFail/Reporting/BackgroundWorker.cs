@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Web.Hosting;
 
-namespace AppFail.Reporting
+namespace Appfail.Reporting.Reporting
 {
     /// <summary>
     /// Runs some logic on a background thread that is registered with ASP.NET

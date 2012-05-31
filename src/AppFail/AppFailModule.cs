@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Web;
-using AppFail.Helpers;
 
-namespace AppFail
+namespace Appfail.Reporting
 {
-    public class AppFailModule : IHttpModule
+    public class AppfailModule : IHttpModule
     {
         public void Init(HttpApplication application)
         {

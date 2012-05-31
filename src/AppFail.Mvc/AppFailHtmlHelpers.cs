@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
-namespace AppFail.Mvc
+namespace Appfail.Reporting.Mvc
 {
-    public static class AppFailHtmlHelpers
+    public static class AppfailHtmlHelpers
     {
         /// <summary>
         /// Includes a script tag to load the AppFail overlay on this page.
@@ -16,7 +11,7 @@ namespace AppFail.Mvc
         /// <returns></returns>
         public static MvcHtmlString IncludeAppFailOverlay(this HtmlHelper htmlHelper)
         {
-            return MvcHtmlString.Create(AppFail.RenderIncludes());
+            return MvcHtmlString.Create(Appfail.RenderIncludes());
         }
     }
 }
