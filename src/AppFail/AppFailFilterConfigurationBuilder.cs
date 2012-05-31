@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Text.RegularExpressions;
 
-namespace Appfail.Reporting
+namespace AppfailReporting
 {
     internal sealed class AppfailFilterConfigurationBuilder : IAppfailFilterConfigurationBuilder
     {

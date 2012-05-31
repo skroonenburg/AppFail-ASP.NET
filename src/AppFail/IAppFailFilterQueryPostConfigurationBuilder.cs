@@ -1,4 +1,4 @@
-﻿namespace Appfail.Reporting
+﻿namespace AppfailReporting
 {
     public interface IAppfailFilterQueryPostConfigurationBuilder
     {

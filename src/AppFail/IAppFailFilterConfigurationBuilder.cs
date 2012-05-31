@@ -2,7 +2,7 @@
 using System.Net;
 using System.Text.RegularExpressions;
 
-namespace Appfail.Reporting
+namespace AppfailReporting
 {
     public interface IAppfailFilterConfigurationBuilder
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 
-namespace Appfail.Reporting.Mvc
+namespace AppfailReporting.Mvc
 {
     /// <summary>
     /// A filter that causes all filters thrown by controller actions to be reported to Appfail.

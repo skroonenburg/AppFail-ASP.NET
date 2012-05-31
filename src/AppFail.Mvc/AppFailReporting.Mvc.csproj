@@ -8,8 +8,8 @@
     <ProjectGuid>{0A30DD38-301A-4BC6-8690-48CCA866845A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Appfail.Reporting.Mvc</RootNamespace>
-    <AssemblyName>Appfail.Reporting.Mvc</AssemblyName>
+    <RootNamespace>AppfailReporting.Mvc</RootNamespace>
+    <AssemblyName>AppfailReporting.Mvc</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -48,9 +48,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AppFail\Appfail.Reporting.csproj">
+    <ProjectReference Include="..\AppFail\AppfailReporting.csproj">
       <Project>{61620DF6-A197-4C39-B173-EE3B3345ADE5}</Project>
-      <Name>Appfail.Reporting</Name>
+      <Name>AppfailReporting</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,4 @@
-﻿namespace Appfail.Reporting.Helpers
+﻿namespace AppfailReporting.Helpers
 {
     internal static class UrlLookup
     {

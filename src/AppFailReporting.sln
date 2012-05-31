@@ -15,9 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebForms", "WebForms", "{2F
 		..\nuspec\WebForms\web.config.transform = ..\nuspec\WebForms\web.config.transform
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Appfail.Reporting", "AppFail\Appfail.Reporting.csproj", "{61620DF6-A197-4C39-B173-EE3B3345ADE5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppfailReporting", "AppFail\AppfailReporting.csproj", "{61620DF6-A197-4C39-B173-EE3B3345ADE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppFail.Reporting.Mvc", "AppFail.Mvc\AppFail.Reporting.Mvc.csproj", "{0A30DD38-301A-4BC6-8690-48CCA866845A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppfailReporting.Mvc", "AppFail.Mvc\AppfailReporting.Mvc.csproj", "{0A30DD38-301A-4BC6-8690-48CCA866845A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

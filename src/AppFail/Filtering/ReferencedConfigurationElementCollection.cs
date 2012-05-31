@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
 
-namespace Appfail.Reporting.Filtering
+namespace AppfailReporting.Filtering
 {
     public class ReferencedConfigurationElementCollection<T> : ConfigurationElementCollection, IEnumerable<T> where T : ConfigurationElement, new()
     {

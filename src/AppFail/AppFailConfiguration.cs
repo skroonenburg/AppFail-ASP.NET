@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
-using Appfail.Reporting.Filtering;
+using AppfailReporting.Filtering;
 
-namespace Appfail.Reporting
+namespace AppfailReporting
 {
     public class AppfailConfiguration : ConfigurationSection
     {

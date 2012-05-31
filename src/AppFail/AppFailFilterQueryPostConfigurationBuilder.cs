@@ -1,4 +1,4 @@
-﻿namespace Appfail.Reporting
+﻿namespace AppfailReporting
 {
     internal sealed class AppfailFilterQueryPostConfigurationBuilder : IAppfailFilterQueryPostConfigurationBuilder
     {

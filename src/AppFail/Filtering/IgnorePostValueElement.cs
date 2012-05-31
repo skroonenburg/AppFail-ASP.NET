@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Configuration;
 
-namespace Appfail.Reporting.Filtering
+namespace AppfailReporting.Filtering
 {
     public class IgnorePostValueElement : ConfigurationElement
     {

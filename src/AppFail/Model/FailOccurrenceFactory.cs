@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Web;
 
-namespace Appfail.Reporting.Model
+namespace AppfailReporting.Model
 {
     internal static class FailOccurrenceFactory
     {

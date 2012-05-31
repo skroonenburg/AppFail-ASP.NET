@@ -5,11 +5,11 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
-using Appfail.Reporting.Helpers;
-using Appfail.Reporting.Model;
-using Appfail.Reporting.Reporting;
+using AppfailReporting.Helpers;
+using AppfailReporting.Model;
+using AppfailReporting.Reporting;
 
-namespace Appfail.Reporting
+namespace AppfailReporting
 {
     public static class Appfail
     {

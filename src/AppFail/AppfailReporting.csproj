@@ -8,8 +8,8 @@
     <ProjectGuid>{61620DF6-A197-4C39-B173-EE3B3345ADE5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Appfail.Reporting</RootNamespace>
-    <AssemblyName>Appfail.Reporting</AssemblyName>
+    <RootNamespace>AppfailReporting</RootNamespace>
+    <AssemblyName>AppfailReporting</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

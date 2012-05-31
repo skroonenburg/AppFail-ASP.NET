@@ -14,7 +14,7 @@ IF EXIST %SourceDirectory% %DeleteDirectoryCommand% %SourceDirectory%
 
 :: copy the files to the source directory
 set SourceLocation=..\..\src\AppFail\bin\Release\
-set SourceFile=AppFail.Reporting.dll
+set SourceFile=AppFailReporting.dll
 
 IF NOT EXIST %SourceLocation%%SourceFile% (
 	echo Source files were not found. Did you compile in release?

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Appfail.Reporting
+namespace AppfailReporting
 {
     internal sealed class AppfailConfigurationBuilder : IAppfailConfigurationBuilder
     {

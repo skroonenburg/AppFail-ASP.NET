@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Appfail.Reporting.Mvc
+namespace AppfailReporting.Mvc
 {
     public static class AppfailHtmlHelpers
     {
@@ -11,7 +11,7 @@ namespace Appfail.Reporting.Mvc
         /// <returns></returns>
         public static MvcHtmlString IncludeAppfailOverlay(this HtmlHelper htmlHelper)
         {
-            return MvcHtmlString.Create(Appfail.RenderIncludes());
+            return MvcHtmlString.Create(AppfailReporting.Appfail.RenderIncludes());
         }
     }
 }

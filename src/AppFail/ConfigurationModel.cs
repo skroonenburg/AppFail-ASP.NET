@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Text.RegularExpressions;
-using Appfail.Reporting.Filtering;
+using AppfailReporting.Filtering;
 
-namespace Appfail.Reporting
+namespace AppfailReporting
 {
     internal class ConfigurationModel
     {

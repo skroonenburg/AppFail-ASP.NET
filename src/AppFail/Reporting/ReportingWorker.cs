@@ -6,10 +6,10 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Web.Script.Serialization;
-using Appfail.Reporting.Helpers;
-using Appfail.Reporting.Model;
+using AppfailReporting.Helpers;
+using AppfailReporting.Model;
 
-namespace Appfail.Reporting.Reporting
+namespace AppfailReporting.Reporting
 {
     /// <summary>
     /// Runs in the background and reports failures to appfail.net periodically.

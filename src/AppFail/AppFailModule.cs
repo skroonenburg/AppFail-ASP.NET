@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
 
-namespace Appfail.Reporting
+namespace AppfailReporting
 {
     public class AppfailModule : IHttpModule
     {

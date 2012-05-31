@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Appfail.Reporting.Model
+namespace AppfailReporting.Model
 {
     internal class FailSubmission
     {

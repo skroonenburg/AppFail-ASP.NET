@@ -3,7 +3,7 @@
   <system.web>
     <pages>
       <namespaces>
-        <add namespace="Appfail.Mvc"/>
+        <add namespace="AppfailReporting.Mvc"/>
       </namespaces>
     </pages>
   </system.web>
