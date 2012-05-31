@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Reflection;
 using System.Text;
 using System.Threading;
-using System.Web;
 using System.Web.Script.Serialization;
-using AppFail.Helpers;
-using AppFail.Model;
+using Appfail.Reporting.Helpers;
+using Appfail.Reporting.Model;
 
-namespace AppFail.Reporting
+namespace Appfail.Reporting.Reporting
 {
     /// <summary>
     /// Runs in the background and reports failures to appfail.net periodically.

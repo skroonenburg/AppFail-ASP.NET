@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using AppFail.Filtering;
+﻿using System.Configuration;
+using Appfail.Reporting.Filtering;
 
-namespace AppFail
+namespace Appfail.Reporting
 {
-    public class AppFailConfiguration : ConfigurationSection
+    public class AppfailConfiguration : ConfigurationSection
     {
-        public static AppFailConfiguration Current
+        public static AppfailConfiguration Current
         {
             get
             {
-                return (AppFailConfiguration)ConfigurationManager.GetSection("appFail");
+                return (AppfailConfiguration)ConfigurationManager.GetSection("appfail");
             }
         }
 

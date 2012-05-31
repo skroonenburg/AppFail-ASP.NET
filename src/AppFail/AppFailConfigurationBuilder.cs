@@ -1,50 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Web;
 
-namespace AppFail
+namespace Appfail.Reporting
 {
-    internal sealed class AppFailConfigurationBuilder : IAppFailConfigurationBuilder
+    internal sealed class AppfailConfigurationBuilder : IAppfailConfigurationBuilder
     {
-        private readonly IAppFailFilterConfigurationBuilder _appFailFilterConfigurationBuilder;
-        private readonly IAppFailFilterQueryPostConfigurationBuilder _appFailFilterQueryPostConfigurationBuilder;
+        private readonly IAppfailFilterConfigurationBuilder _appFailFilterConfigurationBuilder;
+        private readonly IAppfailFilterQueryPostConfigurationBuilder _appFailFilterQueryPostConfigurationBuilder;
 
-        public AppFailConfigurationBuilder()
+        public AppfailConfigurationBuilder()
         {
-            _appFailFilterConfigurationBuilder = new AppFailFilterConfigurationBuilder(this);
-            _appFailFilterQueryPostConfigurationBuilder = new AppFailFilterQueryPostConfigurationBuilder(this);
+            _appFailFilterConfigurationBuilder = new AppfailFilterConfigurationBuilder(this);
+            _appFailFilterQueryPostConfigurationBuilder = new AppfailFilterQueryPostConfigurationBuilder(this);
         }
 
-        public IAppFailConfigurationBuilder ReportingMinimumBatchSize(int minimumBatchSize)
+        public IAppfailConfigurationBuilder ReportingMinimumBatchSize(int minimumBatchSize)
         {
             ConfigurationModel.Instance.ReportingMinimumBatchSize = minimumBatchSize;
             return this;
         }
 
-        public IAppFailConfigurationBuilder ReportingMaxmimumInterval(TimeSpan maximumInterval)
+        public IAppfailConfigurationBuilder ReportingMaxmimumInterval(TimeSpan maximumInterval)
         {
             ConfigurationModel.Instance.ReportingMaximumInterval = maximumInterval;
             return this;
         }
 
-        public IAppFailConfigurationBuilder PopulateUsernameWith(Func<string> populateUserCallback)
+        public IAppfailConfigurationBuilder PopulateUsernameWith(Func<string> populateUserCallback)
         {
             ConfigurationModel.Instance.PopulateUsernameFrom = populateUserCallback;
             return this;
         }
 
-        public IAppFailConfigurationBuilder ReportingOccurrenceMaxSizeBytes(long maxSizeBytes)
+        public IAppfailConfigurationBuilder ReportingOccurrenceMaxSizeBytes(long maxSizeBytes)
         {
             ConfigurationModel.Instance.ReportingOccurrenceMaxSizeBytes = maxSizeBytes;
 
             return this;
         }
 
-        public IAppFailConfigurationBuilder DoNotReportUsername
+        public IAppfailConfigurationBuilder DoNotReportUsername
         {
             get
             {
@@ -63,24 +57,24 @@ namespace AppFail
             }
         }
 
-        public IAppFailConfigurationBuilder ApiToken(string apiToken)
+        public IAppfailConfigurationBuilder ApiToken(string apiToken)
         {
             ConfigurationModel.Instance.ApiToken = apiToken;
             return this;
         }
 
-        public IAppFailConfigurationBuilder BaseApiUrl(string baseApiUrl)
+        public IAppfailConfigurationBuilder BaseApiUrl(string baseApiUrl)
         {
             ConfigurationModel.Instance.BaseApiUrl = baseApiUrl;
             return this;
         }
 
-        public IAppFailFilterConfigurationBuilder IgnoreExceptions
+        public IAppfailFilterConfigurationBuilder IgnoreExceptions
         {
             get { return _appFailFilterConfigurationBuilder; }
         }
 
-        public IAppFailFilterQueryPostConfigurationBuilder IgnorePostValues
+        public IAppfailFilterQueryPostConfigurationBuilder IgnorePostValues
         {
             get { return _appFailFilterQueryPostConfigurationBuilder; }
         }

@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
-using System.Web.Configuration;
-using AppFail.Filtering;
-using AppFail.Helpers;
-using AppFail.Model;
-using AppFail.Reporting;
+using Appfail.Reporting.Helpers;
+using Appfail.Reporting.Model;
+using Appfail.Reporting.Reporting;
 
-namespace AppFail
+namespace Appfail.Reporting
 {
-    public static class AppFail
+    public static class Appfail
     {
         /// <summary>
         /// Sends the given exception to AppFail
@@ -55,9 +52,9 @@ namespace AppFail
             }
         }
 
-        public static IAppFailConfigurationBuilder Configure
+        public static IAppfailConfigurationBuilder Configure
         {
-            get { return new AppFailConfigurationBuilder(); }
+            get { return new AppfailConfigurationBuilder(); }
         }
 
         internal static string CurrentRelativePath

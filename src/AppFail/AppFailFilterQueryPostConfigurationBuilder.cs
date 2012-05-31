@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Text.RegularExpressions;
-
-namespace AppFail
+﻿namespace Appfail.Reporting
 {
-    internal sealed class AppFailFilterQueryPostConfigurationBuilder : IAppFailFilterQueryPostConfigurationBuilder
+    internal sealed class AppfailFilterQueryPostConfigurationBuilder : IAppfailFilterQueryPostConfigurationBuilder
     {
-        private readonly IAppFailConfigurationBuilder _appFailConfigurationBuilder;
+        private readonly IAppfailConfigurationBuilder _appFailConfigurationBuilder;
 
-        public AppFailFilterQueryPostConfigurationBuilder(IAppFailConfigurationBuilder pBuilder)
+        public AppfailFilterQueryPostConfigurationBuilder(IAppfailConfigurationBuilder pBuilder)
         {
             _appFailConfigurationBuilder = pBuilder;
         }
@@ -22,7 +14,7 @@ namespace AppFail
         /// </summary>
         /// <param name="exception">An array of string names that should be ignore.</param>
         /// <returns></returns>
-        public IAppFailConfigurationBuilder WithNameContaining(params string[] names)
+        public IAppfailConfigurationBuilder WithNameContaining(params string[] names)
         {
             ConfigurationModel.Instance.FilteredPostNamesContaining.AddRange(names);
 

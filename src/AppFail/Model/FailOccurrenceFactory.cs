@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Web;
 
-namespace AppFail.Model
+namespace Appfail.Reporting.Model
 {
     internal static class FailOccurrenceFactory
     {
@@ -34,11 +34,11 @@ namespace AppFail.Model
             try
             {
                 queryValuePairs = request.QueryString.Keys.OfType<string>()
-                    .Where(x => !AppFail.IsPostFiltered(x))
+                    .Where(x => !Appfail.IsPostFiltered(x))
                     .Select(k => new string[] {k, request.QueryString[k]}).ToArray();
 
                 postValuePairs = request.Form.Keys.OfType<string>()
-                                        .Where(x => !AppFail.IsPostFiltered(x))
+                                        .Where(x => !Appfail.IsPostFiltered(x))
                                         .Select(k => new string[] { k, request.Form[k] }).ToArray();
             }
             catch (HttpRequestValidationException)

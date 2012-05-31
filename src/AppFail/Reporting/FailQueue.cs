@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using AppFail.Model;
+using Appfail.Reporting.Model;
 
-namespace AppFail.Reporting
+namespace Appfail.Reporting.Reporting
 {
     /// <summary>
     /// Manages a queue of failures that need to be reported to appfail.net.
