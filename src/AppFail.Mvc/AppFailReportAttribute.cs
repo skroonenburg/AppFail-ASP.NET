@@ -4,8 +4,8 @@ using System.Web.Mvc;
 namespace Appfail.Reporting.Mvc
 {
     /// <summary>
-    /// A filter that causes all filters thrown by controller actions to be reported to AppFail.
-    /// if you are using the MVC HandleError attribute, then it's important to define AppFailReport before
+    /// A filter that causes all filters thrown by controller actions to be reported to Appfail.
+    /// if you are using the MVC HandleError attribute, then it's important to define AppfailReport before
     /// HandleError, so that it is called for all exceptions.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
@@ -13,10 +13,10 @@ namespace Appfail.Reporting.Mvc
     {
         public void OnException(ExceptionContext filterContext)
         {
-            // Only log handled exceptions. AppFail will catch all unhandled exceptions anyway.
+            // Only log handled exceptions. Appfail will catch all unhandled exceptions anyway.
             if (filterContext.ExceptionHandled)
             {
-                filterContext.Exception.SendToAppFail();
+                filterContext.Exception.SendToAppfail();
             }
         }
     }

@@ -14,10 +14,10 @@ namespace Appfail.Reporting
     public static class Appfail
     {
         /// <summary>
-        /// Sends the given exception to AppFail
+        /// Sends the given exception to Appfail
         /// </summary>
         /// <param name="e"></param>
-        public static void SendToAppFail(this Exception e, HttpContextBase httpContext = null)
+        public static void SendToAppfail(this Exception e, HttpContextBase httpContext = null)
         {
             if (e == null)
             {
@@ -47,7 +47,7 @@ namespace Appfail.Reporting
             }
             catch (Exception)
             {
-                // Yes this is a catch-all exception, but warranted here. AppFail's reporting module
+                // Yes this is a catch-all exception, but warranted here. Appfail's reporting module
                 // should NEVER cause an unhandled exception. We can't be bringing down client applications.
             }
         }
@@ -149,7 +149,7 @@ namespace Appfail.Reporting
                                 }
                                 catch (Exception regex)
                                 {
-                                    Debug.WriteLine(string.Format("AppFail: Could not parse or evaluate regex value - {0}" + regex.Message));
+                                    Debug.WriteLine(string.Format("Appfail: Could not parse or evaluate regex value - {0}" + regex.Message));
                                 }
 
                                 break;

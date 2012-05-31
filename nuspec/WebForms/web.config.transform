@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <configuration>
   <configSections>
-    <section name="appFail" type="Appfail.AppfailConfiguration, Appfail"/>
+    <section name="appfail" type="Appfail.AppfailConfiguration, Appfail"/>
   </configSections>
   <system.web>
     <httpModules>
-      <add name="AppFail" type="Appfail.AppfailModule, Appfail" />
+      <add name="Appfail" type="Appfail.AppfailModule, Appfail" />
     </httpModules>
     <pages>
       <namespaces>
-        <add namespace="AppFail"/>
+        <add namespace="Appfail"/>
       </namespaces>
     </pages>
   </system.web>

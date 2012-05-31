@@ -3,15 +3,15 @@
   <metadata>
     <id>Appfail.WebForms</id>
     <version>1.0.0</version>
-    <authors>Sam Kroonenburg</authors>
-    <description>AppFail monitors your web application for exceptions and reports them to appfail.net for rich failure analytics and notifications.</description>
+    <authors>Appfail</authors>
+    <description>Appfail monitors your web application for exceptions and reports them to appfail.net for rich failure analytics and notifications.</description>
     <language>en-US</language>
     <projectUrl>http://appfail.net</projectUrl>
-    <iconUrl>http://appfail.net/assets/img/nuget-icon.png</iconUrl>
+    <iconUrl>http://appfail.net/assets/img/logo32.png</iconUrl>
     <tags></tags>
   </metadata>
   <files>
-    <file src="Appfail.dll" target="lib\35\Appfail.dll" />
+    <file src="Appfail.Reporting.dll" target="lib\35\Appfail.Reporting.dll" />
     <file src="web.config.transform" target="Content\web.config.transform" />
   </files>
 </package>

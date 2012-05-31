@@ -64,7 +64,7 @@ namespace Appfail.Reporting.Reporting
             }
             catch (Exception)
             {
-                // Yes this is a catch-all exception, but warranted here. AppFail's reporting module
+                // Yes this is a catch-all exception, but warranted here. Appfail's reporting module
                 // should NEVER cause an unhandled exception. We can't be bringing down client applications.
                 // We could try to restart the thread here... but let's err on the side of caution on not cause error loops.
             }

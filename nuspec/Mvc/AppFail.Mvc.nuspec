@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package>
   <metadata>
-    <id>AppFail.Mvc</id>
+    <id>Appfail.Mvc</id>
     <version>1.0.0</version>
-    <authors>Sam Kroonenburg</authors>
-    <description>AppFail monitors your web application for exceptions and reports them to appfail.net for rich failure analytics and notifications.</description>
+    <authors>Appfail</authors>
+    <description>Appfail monitors your web application for exceptions and reports them to appfail.net for rich failure analytics and notifications.</description>
     <language>en-US</language>
     <projectUrl>http://appfail.net</projectUrl>
-    <iconUrl>http://appfail.net/assets/img/nuget-icon.png</iconUrl>
+    <iconUrl>http://appfail.net/assets/img/logo32.png</iconUrl>
     <tags></tags>
     <dependencies>
-      <dependency id="AppFail.WebForms" version="1.0.0"/>
+      <dependency id="Appfail.WebForms" version="1.0.0"/>
     </dependencies>
   </metadata>
   <files>
-    <file src="AppFail.Mvc.dll" target="lib\35\AppFail.Mvc.dll" />
+    <file src="Appfail.Reporting.Mvc.dll" target="lib\35\Appfail.Reporting.Mvc.dll" />
     <file src="web.config.transform" target="Content\web.config.transform" />
   </files>
 </package>

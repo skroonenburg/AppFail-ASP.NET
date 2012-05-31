@@ -14,7 +14,7 @@ IF EXIST %SourceDirectory% %DeleteDirectoryCommand% %SourceDirectory%
 
 :: copy the files to the source directory
 set SourceLocation=..\..\src\AppFail.Mvc\bin\Release\
-set SourceFile=AppFail.Mvc.dll
+set SourceFile=AppFail.Reporting.Mvc.dll
 
 IF NOT EXIST %SourceLocation%%SourceFile% (
 	echo Source files were not found. Did you compile in release?

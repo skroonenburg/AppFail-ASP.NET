@@ -47,7 +47,7 @@ namespace Appfail.Reporting
             }
         }
 
-        public IAppFailConfigurationBuilder DisableInDebugMode
+        public IAppfailConfigurationBuilder DisableInDebugMode
         {
             get
             {

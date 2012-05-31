@@ -68,7 +68,7 @@ namespace Appfail.Reporting
         private bool? _disableInDebugMode;
         public bool DisableInDebugMode
         {
-            get { return _disableInDebugMode ?? AppFailConfiguration.Current.DisableInDebugMode; }
+            get { return _disableInDebugMode ?? AppfailConfiguration.Current.DisableInDebugMode; }
             set { _disableInDebugMode = value; }
         }
 

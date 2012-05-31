@@ -5,11 +5,11 @@ namespace Appfail.Reporting.Mvc
     public static class AppfailHtmlHelpers
     {
         /// <summary>
-        /// Includes a script tag to load the AppFail overlay on this page.
+        /// Includes a script tag to load the Appfail overlay on this page.
         /// </summary>
         /// <param name="htmlHelper"></param>
         /// <returns></returns>
-        public static MvcHtmlString IncludeAppFailOverlay(this HtmlHelper htmlHelper)
+        public static MvcHtmlString IncludeAppfailOverlay(this HtmlHelper htmlHelper)
         {
             return MvcHtmlString.Create(Appfail.RenderIncludes());
         }
