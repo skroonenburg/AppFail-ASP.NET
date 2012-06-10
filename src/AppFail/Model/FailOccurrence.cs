@@ -4,7 +4,7 @@ namespace AppfailReporting.Model
 {
     internal class FailOccurrence
     {
-        internal FailOccurrence(string exceptionType, string stackTrace, string relativeUrl, string verb, string referrerUrl, string exceptionMessage, DateTime occurrenceTimeUtc, string user, string[][] postValuePairs, string [][] queryValuePairs)
+        internal FailOccurrence(string exceptionType, string stackTrace, string relativeUrl, string verb, string referrerUrl, string exceptionMessage, DateTime occurrenceTimeUtc, string user, string[][] postValuePairs, string [][] queryValuePairs, string userAgent)
         {
             ExceptionType = exceptionType;
             StackTrace = stackTrace;
@@ -19,6 +19,7 @@ namespace AppfailReporting.Model
             QueryValuePairs = queryValuePairs;
             SubmissionAttempts = 0;
             UniqueId = Guid.NewGuid().ToString();
+            UserAgent = userAgent;
         }
 
         public string RelativeUrl { get; private set; }
@@ -33,6 +34,7 @@ namespace AppfailReporting.Model
         public string[][] PostValuePairs { get; private set; }
         public string[][] QueryValuePairs { get; private set; }
         public string UniqueId { get; private set; }
+        public string UserAgent { get; private set; }
 
         internal int SubmissionAttempts { get; private set; }
         internal void IncrementSubmissionAttempts()

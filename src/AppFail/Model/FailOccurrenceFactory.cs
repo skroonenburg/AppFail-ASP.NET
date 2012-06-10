@@ -12,7 +12,7 @@ namespace AppfailReporting.Model
             var urlReferrer = request.UrlReferrer != null ? request.UrlReferrer.ToString() : null;
 
             var relativeUrl = request.Url != null ? request.Url.ToString() : null;
-
+            
             string user = null;
 
             if (ConfigurationModel.Instance.ReportCurrentUsername)
@@ -53,7 +53,8 @@ namespace AppfailReporting.Model
                                             DateTime.UtcNow,
                                             user,
                                             postValuePairs,
-                                            queryValuePairs);
+                                            queryValuePairs,
+                                            request.UserAgent);
 
             return report;
         }
