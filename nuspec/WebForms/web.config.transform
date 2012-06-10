@@ -4,9 +4,6 @@
     <section name="appfail" type="AppfailReporting.AppfailConfiguration, AppfailReporting"/>
   </configSections>
   <system.web>
-    <httpModules>
-      <add name="appfail" type="AppfailReporting.AppfailModule, AppfailReporting" />
-    </httpModules>
     <pages>
       <namespaces>
         <add namespace="AppfailReporting"/>

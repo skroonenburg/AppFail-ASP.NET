@@ -18,6 +18,7 @@ namespace AppfailReporting.Model
             PostValuePairs = postValuePairs;
             QueryValuePairs = queryValuePairs;
             SubmissionAttempts = 0;
+            UniqueId = Guid.NewGuid().ToString();
         }
 
         public string RelativeUrl { get; private set; }
@@ -31,6 +32,7 @@ namespace AppfailReporting.Model
         public string User { get; private set; }
         public string[][] PostValuePairs { get; private set; }
         public string[][] QueryValuePairs { get; private set; }
+        public string UniqueId { get; private set; }
 
         internal int SubmissionAttempts { get; private set; }
         internal void IncrementSubmissionAttempts()
