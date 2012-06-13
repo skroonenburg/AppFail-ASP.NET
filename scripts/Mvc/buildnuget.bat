@@ -31,8 +31,10 @@ IF NOT EXIST %SourceLocation%%SourceFile% (
 set ManifestLocation=..\..\nuspec\Mvc\
 set ManifestFile=AppFail.Mvc.nuspec
 set WebConfigTransformFile=web.config.transform
+set ReadmeFile=readme.txt
 
 %CopyFilesCommand% %ManifestLocation%%WebConfigTransformFile% %SourceDirectory%
+%CopyFilesCommand% %ManifestLocation%%ReadmeFile% %SourceDirectory%
 
 :: set the nuget file location
 set NugetLocation=..\..\tools\nuget\

@@ -6,12 +6,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mvc", "Mvc", "{02B4F09E-E4AA-4B2F-B93D-1691A3B49435}"
 	ProjectSection(SolutionItems) = preProject
 		..\nuspec\Mvc\AppFail.Mvc.nuspec = ..\nuspec\Mvc\AppFail.Mvc.nuspec
+		..\nuspec\Mvc\readme.txt = ..\nuspec\Mvc\readme.txt
 		..\nuspec\Mvc\web.config.transform = ..\nuspec\Mvc\web.config.transform
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebForms", "WebForms", "{2FA235A5-17C3-4CFF-8F43-1DFBCEFEEBC3}"
 	ProjectSection(SolutionItems) = preProject
 		..\nuspec\WebForms\AppFail.nuspec = ..\nuspec\WebForms\AppFail.nuspec
+		..\nuspec\WebForms\readme.txt = ..\nuspec\WebForms\readme.txt
 		..\nuspec\WebForms\web.config.transform = ..\nuspec\WebForms\web.config.transform
 	EndProjectSection
 EndProject

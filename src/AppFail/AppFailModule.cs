@@ -18,6 +18,12 @@ namespace AppfailReporting
             if (current != null && current.Server != null)
             {
                 var exception = HttpContext.Current.Server.GetLastError();
+
+                if (exception is HttpUnhandledException)
+                {
+                    exception = exception.GetBaseException();
+                }
+
                 exception.SendToAppfail();
             }
         }

@@ -9,11 +9,15 @@
         <add namespace="AppfailReporting"/>
       </namespaces>
     </pages>
+    <httpModules>
+      <add name="appfail" type="AppfailReporting.AppfailModule, AppfailReporting"/>
+    </httpModules>
   </system.web>
   <system.webServer>
     <modules runAllManagedModulesForAllRequests="true">
       <add name="appfail" type="AppfailReporting.AppfailModule, AppfailReporting"/>
     </modules>
+    <validation validateIntegratedModeConfiguration="false"/>
   </system.webServer>
   <appfail apiToken="YOUR APPLICATION API TOKEN HERE" />
 </configuration>
