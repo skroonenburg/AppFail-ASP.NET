@@ -59,7 +59,8 @@ namespace AppfailReporting.Model
                     return System.Environment.MachineName;
                 }
                 catch (SecurityException)
-                {}
+                {
+                }
 
                 return null;
             }
@@ -70,24 +71,6 @@ namespace AppfailReporting.Model
             }
             catch (HttpException)
             {
-            }
-            catch (SecurityException)
-            {
-            }
-
-            return null;
-        }
-
-        internal static string GetHtmlErrorMessage(HttpException htmlException)
-        {
-            if (htmlException == null)
-            {
-                return null;
-            }
-
-            try
-            {
-                return htmlException.GetHtmlErrorMessage();
             }
             catch (SecurityException)
             {
@@ -118,12 +101,6 @@ namespace AppfailReporting.Model
             }
             
             string machineName = GetMachineName(httpContext);
-            string htmlErrorMessage = null;
-
-            if (e is HttpException)
-            {
-                htmlErrorMessage = GetHtmlErrorMessage((HttpException)e);
-            }
 
             // Filter query & post value pairs according to locally defined rules
             string[][] postValuePairs = null;
