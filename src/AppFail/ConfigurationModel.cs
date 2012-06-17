@@ -18,7 +18,7 @@ namespace AppfailReporting
             FilteredExceptionByRelativeUrlsStartingWith = new List<string>();
             FilteredPostNamesContaining = new List<string>();
             FilteredCookieNamesContaining = new List<string>(new string[] { ".ASPXAUTH" });
-            FilteredServerVariableNamesContaining = new List<string>(new string[] { "AUTH_PASSWORD" });
+            FilteredServerVariableNamesContaining = new List<string>(new string[] { "AUTH_PASSWORD", "ALL_HTTP", "ALL_RAW", "HTTP_COOKIE" });
         }
 
         static ConfigurationModel()
