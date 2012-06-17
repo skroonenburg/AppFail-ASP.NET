@@ -47,12 +47,16 @@
     <Compile Include="ConfigurationModel.cs" />
     <Compile Include="AppfailModule.cs" />
     <Compile Include="AppfailFilterQueryPostConfigurationBuilder.cs" />
-    <Compile Include="Filtering\IgnorePostValueElement.cs" />
+    <Compile Include="AppfailFilterCookieConfigurationBuilder.cs" />
+    <Compile Include="AppfailFilterServerVariableConfigurationBuilder.cs" />
+    <Compile Include="Filtering\IgnoreNamedValueElement.cs" />
+    <Compile Include="IAppfailFilterCookieConfigurationBuilder.cs" />
     <Compile Include="IAppfailFilterQueryPostConfigurationBuilder.cs" />
     <Compile Include="Filtering\IgnoreExceptionElement.cs" />
     <Compile Include="Filtering\ReferencedConfigurationElementCollection.cs" />
     <Compile Include="IAppfailConfigurationBuilder.cs" />
     <Compile Include="IAppfailFilterConfigurationBuilder.cs" />
+    <Compile Include="IAppfailFilterServerVariableConfigurationBuilder.cs" />
     <Compile Include="Model\FailSubmission.cs" />
     <Compile Include="Reporting\FailQueue.cs" />
     <Compile Include="Model\FailOccurrence.cs" />
@@ -63,6 +67,9 @@
     <Compile Include="Helpers\UrlLookup.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /Y "$(TargetPath)" "D:\dev\git\AppFailDemo2\WebFormsDemo\packages\Appfail.WebForms.1.0.5\lib\35\"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

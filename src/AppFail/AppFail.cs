@@ -84,6 +84,18 @@ namespace AppfailReporting
                    || ConfigurationModel.Instance.IgnorePostValuesSettingsFromWebConfig.Any(x => name.Contains(x.NameContains));
         }
 
+        internal static bool IsCookieFiltered(string name)
+        {
+            return ConfigurationModel.Instance.FilteredCookieNamesContaining.Any(x => name.Contains(x))
+                   || ConfigurationModel.Instance.IgnoreCookiesSettingsFromWebConfig.Any(x => name.Contains(x.NameContains));
+        }
+
+        internal static bool IsServerVariableFiltered(string name)
+        {
+            return ConfigurationModel.Instance.FilteredServerVariableNamesContaining.Any(x => name.Contains(x))
+                   || ConfigurationModel.Instance.IgnoreServerVariablesSettingsFromWebConfig.Any(x => name.Contains(x.NameContains));
+        }
+
         internal static bool IsFilteredByFluentExpression(Exception e, string url)
         {
             if (ConfigurationModel.Instance.FilteredExceptionsByLambda.Any(item => item(e))

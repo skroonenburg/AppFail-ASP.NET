@@ -84,9 +84,40 @@ namespace AppfailReporting
         /// </summary>
         [ConfigurationProperty("ignorePostValues", IsRequired = false, IsDefaultCollection = false)]
         [ConfigurationCollection(typeof(ConfigurationElement))]
-        public ReferencedConfigurationElementCollection<IgnorePostValueElement> IgnorePostValues
+        public ReferencedConfigurationElementCollection<IgnoreNamedValueElement> IgnorePostValues
         {
-            get { return (ReferencedConfigurationElementCollection<IgnorePostValueElement>)this["ignorePostValues"]; }
+            get { return (ReferencedConfigurationElementCollection<IgnoreNamedValueElement>)this["ignorePostValues"]; }
+        }
+
+        /// <summary>
+        /// An example of what could go into web.config
+        ///  <appFail apiToken="0ece6d98-7769-xxx" >
+        ///   <ignoreCookies>
+        ///         <add nameContains="ASPX_AUTH" />
+        ///   </ignoreCookies>
+        /// </appFail>
+        /// </summary>
+        [ConfigurationProperty("ignoreCookies", IsRequired = false, IsDefaultCollection = false)]
+        [ConfigurationCollection(typeof(ConfigurationElement))]
+        public ReferencedConfigurationElementCollection<IgnoreNamedValueElement> IgnoreCookies
+        {
+            get { return (ReferencedConfigurationElementCollection<IgnoreNamedValueElement>)this["ignoreCookies"]; }
+        }
+
+
+        /// <summary>
+        /// An example of what could go into web.config
+        ///  <appFail apiToken="0ece6d98-7769-xxx" >
+        ///   <ignoreServerVariables>
+        ///         <add nameContains="AUTH_NAME" />
+        ///   </ignoreCookies>
+        /// </appFail>
+        /// </summary>
+        [ConfigurationProperty("ignoreServerVariables", IsRequired = false, IsDefaultCollection = false)]
+        [ConfigurationCollection(typeof(ConfigurationElement))]
+        public ReferencedConfigurationElementCollection<IgnoreNamedValueElement> IgnoreServerVariables
+        {
+            get { return (ReferencedConfigurationElementCollection<IgnoreNamedValueElement>)this["ignoreServerVariables"]; }
         }
     }
 }

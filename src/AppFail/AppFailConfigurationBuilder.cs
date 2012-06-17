@@ -6,11 +6,15 @@ namespace AppfailReporting
     {
         private readonly IAppfailFilterConfigurationBuilder _appFailFilterConfigurationBuilder;
         private readonly IAppfailFilterQueryPostConfigurationBuilder _appFailFilterQueryPostConfigurationBuilder;
+        private readonly IAppfailFilterCookieConfigurationBuilder _appFailFilterCookiesConfigurationBuilder;
+        private readonly IAppfailFilterServerVariableConfigurationBuilder _appFailFilterServerVariablesConfigurationBuilder;
 
         public AppfailConfigurationBuilder()
         {
             _appFailFilterConfigurationBuilder = new AppfailFilterConfigurationBuilder(this);
             _appFailFilterQueryPostConfigurationBuilder = new AppfailFilterQueryPostConfigurationBuilder(this);
+            _appFailFilterCookiesConfigurationBuilder = new AppfailFilterCookieConfigurationBuilder(this);
+            _appFailFilterServerVariablesConfigurationBuilder = new AppfailFilterServerVariableConfigurationBuilder(this);
         }
 
         public IAppfailConfigurationBuilder ReportingMinimumBatchSize(int minimumBatchSize)
@@ -77,6 +81,16 @@ namespace AppfailReporting
         public IAppfailFilterQueryPostConfigurationBuilder IgnorePostValues
         {
             get { return _appFailFilterQueryPostConfigurationBuilder; }
+        }
+
+        public IAppfailFilterCookieConfigurationBuilder IgnoreCookies
+        {
+            get { return _appFailFilterCookiesConfigurationBuilder; }
+        }
+
+        public IAppfailFilterServerVariableConfigurationBuilder IgnoreServerVariables
+        {
+            get { return _appFailFilterServerVariablesConfigurationBuilder; }
         }
     }
 }

@@ -63,5 +63,8 @@ namespace AppfailReporting
         /// Do not report form POST values matching the following criteria
         /// </summary>
         IAppfailFilterQueryPostConfigurationBuilder IgnorePostValues { get; }
+
+        IAppfailFilterCookieConfigurationBuilder IgnoreCookies { get; }
+        IAppfailFilterServerVariableConfigurationBuilder IgnoreServerVariables { get; }
     }
 }

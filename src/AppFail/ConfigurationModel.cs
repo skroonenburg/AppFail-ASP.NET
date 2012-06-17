@@ -17,6 +17,8 @@ namespace AppfailReporting
             FilteredExceptionByRelativeUrlsContaining = new List<string>();
             FilteredExceptionByRelativeUrlsStartingWith = new List<string>();
             FilteredPostNamesContaining = new List<string>();
+            FilteredCookieNamesContaining = new List<string>(new string[] { ".ASPXAUTH" });
+            FilteredServerVariableNamesContaining = new List<string>(new string[] { "AUTH_PASSWORD" });
         }
 
         static ConfigurationModel()
@@ -138,14 +140,38 @@ namespace AppfailReporting
             set { _filteredPostNamesContaining = value; }
         }
 
+        private List<string> _filteredCookieNamesContaining;
+        public List<string> FilteredCookieNamesContaining
+        {
+            get { return _filteredCookieNamesContaining; }
+            set { _filteredCookieNamesContaining = value; }
+        }
+
+        private List<string> _filteredServerVariableNamesContaining;
+        public List<string> FilteredServerVariableNamesContaining
+        {
+            get { return _filteredServerVariableNamesContaining; }
+            set { _filteredServerVariableNamesContaining = value; }
+        }
+
         public ReferencedConfigurationElementCollection<IgnoreExceptionElement> IgnoreExceptionSettingsFromWebConfig
         {
             get { return AppfailConfiguration.Current.IgnoreExceptions; }
         }
 
-        public ReferencedConfigurationElementCollection<IgnorePostValueElement> IgnorePostValuesSettingsFromWebConfig
+        public ReferencedConfigurationElementCollection<IgnoreNamedValueElement> IgnorePostValuesSettingsFromWebConfig
         {
             get { return AppfailConfiguration.Current.IgnorePostValues; }
+        }
+
+        public ReferencedConfigurationElementCollection<IgnoreNamedValueElement> IgnoreCookiesSettingsFromWebConfig
+        {
+            get { return AppfailConfiguration.Current.IgnoreCookies; }
+        }
+
+        public ReferencedConfigurationElementCollection<IgnoreNamedValueElement> IgnoreServerVariablesSettingsFromWebConfig
+        {
+            get { return AppfailConfiguration.Current.IgnoreServerVariables; }
         }
     }
 }

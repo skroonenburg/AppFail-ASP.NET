@@ -3,9 +3,9 @@ using System.Configuration;
 
 namespace AppfailReporting.Filtering
 {
-    public class IgnorePostValueElement : ConfigurationElement
+    public class IgnoreNamedValueElement : ConfigurationElement
     {
-        public IgnorePostValueElement()
+        public IgnoreNamedValueElement()
         {
         }
 

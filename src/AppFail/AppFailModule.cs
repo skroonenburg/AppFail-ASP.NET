@@ -5,7 +5,7 @@ namespace AppfailReporting
 {
     public class AppfailModule : IHttpModule
     {
-        public void Init(HttpApplication application)
+        void IHttpModule.Init(HttpApplication application)
         {
             application.Error += ApplicationOnError;
         }
@@ -18,11 +18,7 @@ namespace AppfailReporting
             if (current != null && current.Server != null)
             {
                 var exception = HttpContext.Current.Server.GetLastError();
-
-                if (exception is HttpUnhandledException)
-                {
-                    exception = exception.GetBaseException();
-                }
+                exception = exception != null ? exception.GetBaseException() : null;
 
                 exception.SendToAppfail();
             }
