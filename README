@@ -1,0 +1,16 @@
+The Appfail Reporting Module for ASP.NET.
+
+This includes the projects for both WebForms and MVC.
+
+For documentation of configuration options, see:
+http://support.appfail.net/kb/aspnet-module-configuration
+
+------------------------
+         Ports
+------------------------
+
+We'd like to encourage anyone to port this code to other language/platforms, including:
+Ruby On Rails, Django, node.js and any others!
+
+See this page for more information:
+[http://appfail.net/OtherPlatforms](http://appfail.net/OtherPlatforms)
