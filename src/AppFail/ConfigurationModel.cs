@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text.RegularExpressions;
 using AppfailReporting.Filtering;
+using System.Configuration;
 
 namespace AppfailReporting
 {
@@ -49,14 +50,14 @@ namespace AppfailReporting
         private string _apiToken;
         public string ApiToken
         {
-            get { return _apiToken ?? AppfailConfiguration.Current.ApiToken; }
+            get { return _apiToken ?? ((ConfigurationManager.AppSettings["AppfailApiToken"] as string) ?? AppfailConfiguration.Current.ApiToken); }
             set { _apiToken = value; }
         }
 
         private string _baseApiUrl;
         public string BaseApiUrl
         {
-            get { return EnforceTrailingSlash(_baseApiUrl ?? AppfailConfiguration.Current.BaseApiUrl); }
+            get { return EnforceTrailingSlash(_baseApiUrl ?? ((ConfigurationManager.AppSettings["AppfailBaseApiUrl"] as string) ?? AppfailConfiguration.Current.BaseApiUrl)); }
             set { _baseApiUrl = value; }
         }
 
