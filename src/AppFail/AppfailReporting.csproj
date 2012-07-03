@@ -50,6 +50,7 @@
     <Compile Include="AppfailFilterCookieConfigurationBuilder.cs" />
     <Compile Include="AppfailFilterServerVariableConfigurationBuilder.cs" />
     <Compile Include="Filtering\IgnoreNamedValueElement.cs" />
+    <Compile Include="Helpers\UrlHelpers.cs" />
     <Compile Include="IAppfailFilterCookieConfigurationBuilder.cs" />
     <Compile Include="IAppfailFilterQueryPostConfigurationBuilder.cs" />
     <Compile Include="Filtering\IgnoreExceptionElement.cs" />
