@@ -42,14 +42,21 @@ namespace AppfailReporting
         IAppfailConfigurationBuilder WithHttpStatusCodes(params HttpStatusCode[] httpStatusCode);
 
         /// <summary>
-        ///  Filters exceptions reported to Appfail to ignore those were thrown handling a request with a relative URL containing any of the given values.
+        ///  Filters exceptions reported to Appfail to ignore those that were thrown handling a request with a relative URL matching any of the given values.
+        /// </summary>
+        /// <param name="urlsContaining">An array of strings.</param>
+        /// <returns></returns>
+        IAppfailConfigurationBuilder WithRelativeUrls(params string[] urlsContaining);
+
+        /// <summary>
+        ///  Filters exceptions reported to Appfail to ignore those that were thrown handling a request with a relative URL containing any of the given values.
         /// </summary>
         /// <param name="urlsContaining">An array of strings.</param>
         /// <returns></returns>
         IAppfailConfigurationBuilder WithRelativeUrlsContaining(params string [] urlsContaining);
 
         /// <summary>
-        ///  Filters exceptions reported to Appfail to ignore those were thrown handling a request with a relative URL starting with any of the given values.
+        ///  Filters exceptions reported to Appfail to ignore those that were thrown handling a request with a relative URL starting with any of the given values.
         /// </summary>
         /// <param name="urlsContaining">An array of strings.</param>
         /// <returns></returns>

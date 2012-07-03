@@ -15,6 +15,7 @@ namespace AppfailReporting
             FilteredExceptionsByRegex = new List<Regex>();
             FilteredExceptionsByLambda = new List<Func<Exception, bool>>();
             FilteredExceptionsByHttpStatusCode = new List<HttpStatusCode>();
+            FilteredExceptionByRelativeUrls = new List<string>();
             FilteredExceptionByRelativeUrlsContaining = new List<string>();
             FilteredExceptionByRelativeUrlsStartingWith = new List<string>();
             FilteredPostNamesContaining = new List<string>();
@@ -132,6 +133,13 @@ namespace AppfailReporting
         {
             get { return _filteredExceptionByUrlsContaining; }
             set { _filteredExceptionByUrlsContaining = value; }
+        }
+
+        private List<string> _filteredExceptionByUrls;
+        public List<string> FilteredExceptionByRelativeUrls
+        {
+            get { return _filteredExceptionByUrls; }
+            set { _filteredExceptionByUrls = value; }
         }
 
         private List<string> _filteredPostNamesContaining;

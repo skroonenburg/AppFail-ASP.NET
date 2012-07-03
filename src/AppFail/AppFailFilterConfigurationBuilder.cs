@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace AppfailReporting
 {
@@ -28,16 +29,23 @@ namespace AppfailReporting
             return _appFailConfigurationBuilder;
         }
 
+        public IAppfailConfigurationBuilder WithRelativeUrls(params string[] urlsContaining)
+        {
+            ConfigurationModel.Instance.FilteredExceptionByRelativeUrls.AddRange(urlsContaining.Select(x => x.ToUpperInvariant()));
+
+            return _appFailConfigurationBuilder;
+        }
+
         public IAppfailConfigurationBuilder WithRelativeUrlsContaining(params string[] urlsContaining)
         {
-            ConfigurationModel.Instance.FilteredExceptionByRelativeUrlsContaining.AddRange(urlsContaining);
+            ConfigurationModel.Instance.FilteredExceptionByRelativeUrlsContaining.AddRange(urlsContaining.Select(x => x.ToUpperInvariant()));
 
             return _appFailConfigurationBuilder;
         }
 
         public IAppfailConfigurationBuilder WithRelativeUrlsStartingWith(params string[] urlsStartingWith)
         {
-            ConfigurationModel.Instance.FilteredExceptionByRelativeUrlsStartingWith.AddRange(urlsStartingWith);
+            ConfigurationModel.Instance.FilteredExceptionByRelativeUrlsStartingWith.AddRange(urlsStartingWith.Select(x => x.ToUpperInvariant()));
 
             return _appFailConfigurationBuilder;
         }

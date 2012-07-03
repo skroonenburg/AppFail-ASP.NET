@@ -100,13 +100,15 @@ namespace AppfailReporting
                    || ConfigurationModel.Instance.IgnoreServerVariablesSettingsFromWebConfig.Any(x => name.Contains(x.NameContains));
         }
 
+       
         internal static bool IsFilteredByFluentExpression(Exception e, string url)
         {
             if (ConfigurationModel.Instance.FilteredExceptionsByLambda.Any(item => item(e))
                 || ConfigurationModel.Instance.FilteredExceptionsByType.Contains(e.GetType())
                 || ConfigurationModel.Instance.FilteredExceptionsByRegex.Exists(m => m.Match(e.Message).Success)
-                || ConfigurationModel.Instance.FilteredExceptionByRelativeUrlsContaining.Any(u => url.Contains(u))
-                || ConfigurationModel.Instance.FilteredExceptionByRelativeUrlsStartingWith.Any(u => url.StartsWith(u)))
+                || ConfigurationModel.Instance.FilteredExceptionByRelativeUrls.Any(u => UrlHelpers.UrlsAreEqual(url, u))
+                || ConfigurationModel.Instance.FilteredExceptionByRelativeUrlsContaining.Any(u => UrlHelpers.UrlContains(url, u))
+                || ConfigurationModel.Instance.FilteredExceptionByRelativeUrlsStartingWith.Any(u => UrlHelpers.UrlStartsWith(url, u)))
             {
                 return true;
             }
@@ -182,21 +184,15 @@ namespace AppfailReporting
                             }
                         case "RelativeUrlContains":
                             {
-                                if (url != null && url.Contains(element.Value))
-                                {
-                                    return true;
-                                }
-
-                                break;
+                                return UrlHelpers.UrlContains(url, element.Value);
                             }
                         case "RelativeUrlStartsWith":
                             {
-                                if (url != null && url.StartsWith(element.Value))
-                                {
-                                    return true;
-                                }
-
-                                break;
+                                return UrlHelpers.UrlStartsWith(url, element.Value);
+                            }
+                        case "RelativeUrl":
+                            {
+                                return UrlHelpers.UrlsAreEqual(url, element.Value);
                             }
                     }
                 }
