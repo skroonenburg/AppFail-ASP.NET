@@ -39,9 +39,13 @@ namespace AppfailReporting
 
                 var url = httpContext.Request.Url.AbsolutePath.ToString();
 
-                if (!IsFilteredByFluentExpression(e, url) && !IsFilteredByWebConfig(e, url))
+                // The base exception is the true 'cause' of the error, this is what we report for the
+                // exception type, message and stack trace.
+                var baseException = e.GetBaseException();
+
+                if (!IsFilteredByFluentExpression(baseException, url) && !IsFilteredByWebConfig(baseException, url))
                 {
-                    var failReport = FailOccurrenceFactory.FromException(HttpContext.Current, e);
+                    var failReport = FailOccurrenceFactory.FromException(httpContext, e);
                     FailQueue.Enqueue(failReport);
                 }
             }

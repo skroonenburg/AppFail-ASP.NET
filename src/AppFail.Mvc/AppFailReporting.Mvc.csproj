@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Shared\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="AppfailHtmlHelpers.cs" />
     <Compile Include="AppfailReportAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -12,11 +12,11 @@ namespace AppfailReporting.Reporting
     /// </summary>
     internal static class FailQueue
     {
-        private static Queue<FailOccurrence> _failQueue = new Queue<FailOccurrence>();
+        private static Queue<FailOccurrenceDto> _failQueue = new Queue<FailOccurrenceDto>();
         private static ReaderWriterLockSlim _queueLock = new ReaderWriterLockSlim();
         private static ManualResetEvent _queueSignal = new ManualResetEvent(false);
 
-        public static void Enqueue(FailOccurrence failReport)
+        public static void Enqueue(FailOccurrenceDto failReport)
         {
             // When recording a new fail report, make sure that the reporting worker is running
             ReportingWorker.Instance.Start();
@@ -46,19 +46,19 @@ namespace AppfailReporting.Reporting
             get { return _queueSignal; }
         }
 
-        public static FailOccurrence Dequeue()
+        public static FailOccurrenceDto Dequeue()
         {
             return Dequeue(1).FirstOrDefault();
         }
 
-        public static IEnumerable<FailOccurrence> Dequeue(int count)
+        public static IEnumerable<FailOccurrenceDto> Dequeue(int count)
         {
             try
             {
                 _queueLock.EnterWriteLock();
 
                 var returnCount = Math.Min(count, _failQueue.Count);
-                var fails = new FailOccurrence[returnCount];
+                var fails = new FailOccurrenceDto[returnCount];
 
                 for (var i = 0; i < returnCount; i++)
                 {
@@ -79,7 +79,7 @@ namespace AppfailReporting.Reporting
             }
         }
 
-        public static FailOccurrence Peek()
+        public static FailOccurrenceDto Peek()
         {
             try
             {

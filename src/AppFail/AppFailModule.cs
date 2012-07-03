@@ -18,7 +18,6 @@ namespace AppfailReporting
             if (current != null && current.Server != null)
             {
                 var exception = HttpContext.Current.Server.GetLastError();
-                exception = exception != null ? exception.GetBaseException() : null;
 
                 exception.SendToAppfail();
             }

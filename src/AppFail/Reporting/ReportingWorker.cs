@@ -37,7 +37,7 @@ namespace AppfailReporting.Reporting
 
             if (failOccurrences.Count() > 0)
             {
-                var failSubmission = new FailSubmission(ConfigurationModel.Instance.ApiToken, failOccurrences);
+                var failSubmission = new FailSubmissionDto(ConfigurationModel.Instance.ApiToken, failOccurrences);
 
                 if (!PostToService(failSubmission))
                 {
@@ -59,7 +59,7 @@ namespace AppfailReporting.Reporting
             return FailQueue.WaitHandle;
         }
 
-        private static bool PostToService(FailSubmission failSubmission)
+        private static bool PostToService(FailSubmissionDto failSubmission)
         {
             if (!failSubmission.FailOccurrences.Any())
             {

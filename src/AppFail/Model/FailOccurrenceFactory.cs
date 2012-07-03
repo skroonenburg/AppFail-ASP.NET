@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Security;
@@ -50,7 +51,7 @@ namespace AppfailReporting.Model
                     .Select(c => new string[] { c, Mask(includeCallback, cookieCollection[c].Name, cookieCollection[c].Value) }).ToArray();
         }
 
-        internal static string GetMachineName(HttpContext httpContext)
+        internal static string GetMachineName(HttpContextBase httpContext)
         {
             if (httpContext == null)
             {
@@ -79,12 +80,14 @@ namespace AppfailReporting.Model
             return null;
         }
 
-        internal static FailOccurrence FromException(HttpContext httpContext, Exception e)
+        internal static FailOccurrenceDto FromException(HttpContextBase httpContext, Exception e)
         {
+            var baseException = e.GetBaseException();
+
             var request = httpContext.Request;
             var urlReferrer = request.UrlReferrer != null ? request.UrlReferrer.ToString() : null;
 
-            var relativeUrl = request.Url != null ? request.Url.ToString() : null;
+            var requestUrl = request.Url != null ? request.Url.ToString() : null;
             
             string user = null;
 
@@ -118,12 +121,23 @@ namespace AppfailReporting.Model
             catch (HttpRequestValidationException)
             {}
 
-            var report = new FailOccurrence(e.GetType().FullName,
-                                            e.StackTrace,
-                                            relativeUrl,
+            var httpException = e as HttpException;
+            
+            // Report all exceptions, starting from the top and moving toward the base exception
+            var allExceptions = new List<ExceptionDto>();
+
+            var nextException = e;
+
+            while (nextException != null)
+            {
+                allExceptions.Insert(0, new ExceptionDto(nextException.StackTrace, nextException.Message, nextException.GetType().FullName));
+                nextException = nextException.InnerException;
+            }
+
+            var report = new FailOccurrenceDto(allExceptions.ToArray(),
+                                            requestUrl,
                                             request.HttpMethod,
                                             urlReferrer,
-                                            e.Message,
                                             DateTime.UtcNow,
                                             user,
                                             postValuePairs,
@@ -131,7 +145,9 @@ namespace AppfailReporting.Model
                                             request.UserAgent,
                                             serverVariables,
                                             cookies,
-                                            machineName);
+                                            machineName,
+                                            
+                                            httpException != null ? httpException.GetHttpCode() : (int?)null);
 
             return report;
         }

@@ -40,6 +40,9 @@
     <Reference Include="System.Web.Extensions" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Shared\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Appfail.cs" />
     <Compile Include="AppfailConfiguration.cs" />
     <Compile Include="AppfailConfigurationBuilder.cs" />
@@ -57,9 +60,10 @@
     <Compile Include="IAppfailConfigurationBuilder.cs" />
     <Compile Include="IAppfailFilterConfigurationBuilder.cs" />
     <Compile Include="IAppfailFilterServerVariableConfigurationBuilder.cs" />
-    <Compile Include="Model\FailSubmission.cs" />
+    <Compile Include="Model\FailSubmissionDto.cs" />
+    <Compile Include="Model\ExceptionDto.cs" />
     <Compile Include="Reporting\FailQueue.cs" />
-    <Compile Include="Model\FailOccurrence.cs" />
+    <Compile Include="Model\FailOccurrenceDto.cs" />
     <Compile Include="Model\FailOccurrenceFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reporting\BackgroundWorker.cs" />
