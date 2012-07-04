@@ -13,7 +13,7 @@ namespace AppfailReporting
             }
         }
 
-        [ConfigurationProperty("apiToken", IsRequired = true)]
+        [ConfigurationProperty("apiToken")]
         public string ApiToken
         {
             get { return (string)this["apiToken"]; }
